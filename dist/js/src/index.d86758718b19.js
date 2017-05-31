@@ -1,0 +1,1 @@
+webpackJsonp([0],[,function(e,n,t){"use strict";new Vue({el:"#app",data:function(){return{value:[20,50]}}})}],[1]);
