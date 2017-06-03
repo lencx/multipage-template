@@ -1,0 +1,9 @@
+$header-height: 60px;
+$footer-height: 150px;
+
+$breakPoint: (
+    xs: (b: 576px, s: 575px),
+    sm: (b: 768px, s: 768px),
+    md: (b: 992px, s: 991px),
+    lg: (b: 1200px, s: 1199px)
+);

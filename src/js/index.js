@@ -1,4 +1,6 @@
 'use strict';
+import '@sass/main.scss'
+import '@sass/page/index.scss'
 
 new Vue({
     el: '#app',

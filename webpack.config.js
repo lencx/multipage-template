@@ -15,28 +15,19 @@ function resolve(dir) {
     return path.resolve(__dirname, dir)
 }
 
-// console.log(env.isProd)
-// console.log(entryConf.entryJs)
-// let cloneEntry = {}
-// Object.keys(entryConf.entryJs).forEach(key => {
-//     // console.log(key)
-//     let k = key.split('/')[1]
-//     entryConf.entryJs
-//     for(let i in entryConf.entryJs) {
-//         if(key === i) {
-//             cloneEntry['aaa/'+k] = entryConf.entryJs[i]
-//         }
-//     }
-// })
-// console.log(cloneEntry)
-
 const webpackConf = {
-    // entry: env.isProd ? cloneEntry: entryConf.entryJs,
     entry: entryConf.entryJs,
     output: {
         path: resolve('dist'),
         filename: 'js/[name].[chunkhash:12].js',
         publicPath: env.isProd ? '/dist/' : '/'
+    },
+    resolve: {
+        extensions: ['.js', '.scss', '.json'],
+        alias: {
+            '@': resolve('src'),
+            '@sass': resolve('src/sass')
+        }
     },
     // devtool: env.isProd ? '' : 'source-map',
     module: {
@@ -82,16 +73,18 @@ const webpackConf = {
         new webpack.optimize.CommonsChunkPlugin({
             // name: ['common', 'vendor'].reverse()
             // filename: 'js/common.[hash:12].min.js'
-            name: 'vendor',
-            minChunks: function(module, count) {
-                return (
-                    module.resource && /\.js$/.test(module.resource) && module.resource.indexOf(resolve('./node_modules')) === 0
-                )
-            }
+            name: 'common',
+            minChunks: 2,
+            // minChunks: function(module, count) {
+            //     return (
+            //         module.resource && /\.js$/.test(module.resource) && module.resource.indexOf(resolve('./node_modules')) === 0
+            //     )
+            // }
+            // filename: '[name].[hash:12].js'
         }),
         new webpack.optimize.CommonsChunkPlugin({
-            name: 'manifest',
-            chunks: ['vendor']
+            name: 'common',
+            chunks: ['common']
         }),
         ExtractPlugin
     ]
@@ -103,13 +96,14 @@ for(let page in pages) {
         filename: page.split('/')[1]+'.html',
         template: pages[page],
         inject: true,
-        chunks: [page, 'vendor', 'manifest'],
+        chunks: [page, 'common'],
         minify: {
             removeComments: true,
             collapseWhitespace: true
         },
         chunksSortMode: 'dependency'
     }
+    console.log(conf)
     // console.log(conf)
     webpackConf.plugins.push(new HtmlWebpackPlugin(conf))
 }

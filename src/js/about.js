@@ -1,10 +1,11 @@
 'use strict';
+import '@sass/main.scss'
 
 new Vue({
     el: '#app',
     data() {
         return {
-            value: [0, 80]
+            value: [30, 80]
         }
     }
 })

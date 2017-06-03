@@ -1,0 +1,22 @@
+@function map-deep-get($map, $keys...) {
+    @each $key in $keys {
+        $map: map-get($map, $key);
+    }
+    @return $map;
+}
+
+@mixin repond($param, $param2) {
+    @if($param2 == 'max') {
+        @media screen and (max-width: map-deep-get($breakPoint, $param, s)) { @content; }
+    }
+    @else if($param2 == 'min') {
+        @media screen and (max-width: map-deep-get($breakPoint, $param, b)) { @content; }
+    }
+    @else {
+        @media screen and (min-width: map-deep-get($breakPoint, $param, b)) and (max-width: map-deep-get($breakPoint, $param, s)) { @content; }
+    }
+}
+
+@mixin collapse {
+    @include repond('sm', 'max') { @content; }
+}
