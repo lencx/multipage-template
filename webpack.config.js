@@ -4,7 +4,7 @@ const webpack = require('webpack')
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const ExtractPlugin = new ExtractTextPlugin({
-    filename: 'css/[name].[chunkhash:12].css',
+    filename: 'css/[name].[hash:12].css',
     allChunks: true
 })
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -19,7 +19,7 @@ const webpackConf = {
     entry: entryConf.entryJs,
     output: {
         path: resolve('dist'),
-        filename: 'js/[name].[chunkhash:12].js',
+        filename: 'js/[name].[hash:12].js',
         publicPath: env.isProd ? '/dist/' : '/'
     },
     resolve: {
@@ -30,6 +30,13 @@ const webpackConf = {
         }
     },
     // devtool: env.isProd ? '' : 'source-map',
+    devServer: {
+        // contentBase: resolve('src'),
+        port: 8000,
+        host: '192.168.0.115',
+        // host: 'localhost',
+        // hot: true
+    },
     module: {
         rules: [
             {
@@ -86,7 +93,8 @@ const webpackConf = {
             name: 'common',
             chunks: ['common']
         }),
-        ExtractPlugin
+        ExtractPlugin,
+        // new webpack.HotModuleReplacementPlugin()
     ]
 }
 
@@ -103,7 +111,6 @@ for(let page in pages) {
         },
         chunksSortMode: 'dependency'
     }
-    console.log(conf)
     // console.log(conf)
     webpackConf.plugins.push(new HtmlWebpackPlugin(conf))
 }

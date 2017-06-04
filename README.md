@@ -29,6 +29,23 @@ yarn static
 gulp
 ```
 
+### Setting proxy
+
+```js
+/**
+* webpack.config.js
+*/
+module.exports = {
+    devServer: {
+        // contentBase: resolve('src'),
+        port: 8000,
+        host: '192.168.0.115', // IP address(Wi-Fi)
+        // host: 'localhost',
+        hot: true
+    }
+}
+```
+
 ### Project structure
 
 ```bash
