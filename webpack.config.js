@@ -20,7 +20,7 @@ const webpackConf = {
     output: {
         path: resolve('dist'),
         filename: 'js/[name].[hash:12].js',
-        publicPath: env.isProd ? '/dist/' : '/'
+        publicPath: env.publicPath
     },
     resolve: {
         extensions: ['.js', '.scss', '.json'],
@@ -32,8 +32,8 @@ const webpackConf = {
     // devtool: env.isProd ? '' : 'source-map',
     devServer: {
         // contentBase: resolve('src'),
-        port: 8000,
-        host: '192.168.0.115',
+        port: env.port,
+        host: env.host,
         // host: 'localhost',
         // hot: true
     },
@@ -57,14 +57,14 @@ const webpackConf = {
                 test: /\.pug$/,
                 use: ['html-loader', 'pug-html-loader']
             }, {
-                test: /\.(jpg|jpeg|png)$/,
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 use: [{
                     loader: 'url-loader',
-                    options: { 
+                    options: {
                         limit: 10000,
                         name: 'img/[name].[hash:12].[ext]'
                     }
-                }],    
+                }]
             }, {
                 test: /\.(woff|woff2|eot|ttf|svg)$/,
                 use: {
