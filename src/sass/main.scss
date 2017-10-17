@@ -1,20 +1,4 @@
-@import 'part/variable';
-@import 'part/media';
-
-@import 'part/nav';
-
-// header, main, footer {
-//     padding: 0 20px !important;
-// }
-::-webkit-scrollbar {
-    display:none
-}
-main {
-    min-height: 120vh;
-}
-
-footer {
-    width: 100%;
-    height: $footer-height;
-    background: #999;
+body {
+    background: pink;
+    display: flex;
 }

@@ -1,73 +1,48 @@
-## Multi page template
-> vue@2.3.x & iview@2.x & pug & postcss & sass
+# TPL
 
-### Build Setup
+## Install package
 
-```bash
-## yarn init
-## yarn add
-## yarn remove
+### Core
 
-# install package
-yarn
+* webpack
+* webpack-dev-server
+* file-loader
+* url-loader
+* extract-text-webpack-plugin
+* shx
 
-# start server
-yarn dev
+> tool
+* friendly-errors-webpack-plugin
 
-# build (production)
-yarn build:prod
+### TypeScript
 
-# clear build file
-yarn clear
+* typescript
+* ts-loader
 
-# static server
-# `path: /dist/*`
-yarn static
+### Babel
 
-# build event.js
-# `./static/js/event.js` => `./static/dist/event.js`
-gulp
-```
+* babel-core
+* babel-loader
+* babel-preset-env
+* babel-register
 
-### Setting proxy
+### Pug
 
-```js
-/**
-* webpack.config.js
-*/
-module.exports = {
-    devServer: {
-        // contentBase: resolve('src'),
-        port: 8000,
-        host: '192.168.0.115', // IP address(Wi-Fi)
-        // host: 'localhost',
-        hot: true
-    }
-}
-```
+* pug
+* raw-loader
+* pug-html-loader
+* html-webpack-plugin
 
-### Project structure
+### CSS
 
-```bash
-# []: Directory
-proj
-|- [dist] # production
-|- [node_modules]
-|- [src] # development
-|    |- [img]
-|    |- [includes] # template
-|    |- [js]
-|    |- [sass]
-|    `- [view] # page (multi page)
-|- [static] # vendor
-|    |- [css]
-|    |- [dist] # production
-|    |- [js]
-|    |    |- event.js # global js file，run `gulp` command
-|    |    |- vue.min.js
-|    |    `- ...
-|    `- [styles] # iview style
-`-...
-# important: The page name should to be same as the js file name.
-```
+> CSS
+* style-loader
+* css-loader
 
+> Sass
+* node-sass
+* sass-loader
+* postcss
+* postcss-loader
+* postcss-cssnext
+* lost
