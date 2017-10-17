@@ -1,21 +1,17 @@
 'use strict'
 
-const path = require('path')
-
 const hash = 8
-const CSSFileName = `css/[name].[hash:${hash}].css`
-const JSFileName = `js/[name].[hash:${hash}].js`
 
 module.exports = {
     commonConf: {
-        CSSFileName,
-        JSFileName
+        CSSFileName: `css/[name].[hash:${hash}].css`,
+        JSFileName: `js/[name].[hash:${hash}].js`,
+        injectIgnore: ['404', 'about/index'],
+        commonJsFile: ['main', 'lib/lib-a']
     },
     buildConf: {
         prodSourceMap: false,
-        assetsPublicPath: '/',
-        // prodGzip: true,
-        // prodGzipExtension: false,
+        assetsPublicPath: '/'
     },
     devConf: {
         host: '172.16.0.45',

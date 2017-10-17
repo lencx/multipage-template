@@ -2,44 +2,42 @@
 
 ## Install package
 
-### Core
+> Core
 
 * webpack
 * webpack-dev-server
 * file-loader
 * url-loader
 * extract-text-webpack-plugin
-* shx
 
-> tool
+>> tool
+* shx
 * friendly-errors-webpack-plugin
 
-### TypeScript
+> TypeScript
 
 * typescript
 * ts-loader
 
-### Babel
+> Babel
 
 * babel-core
 * babel-loader
 * babel-preset-env
-* babel-register
 
-### Pug
+<!-- * babel-register -->
+
+> Pug
 
 * pug
 * raw-loader
 * pug-html-loader
 * html-webpack-plugin
 
-### CSS
+> CSS Precompiled
 
-> CSS
 * style-loader
 * css-loader
-
-> Sass
 * node-sass
 * sass-loader
 * postcss

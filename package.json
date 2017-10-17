@@ -5,14 +5,15 @@
   "main": "index.js",
   "author": "Len <cxin1314@gmail.com>",
   "scripts": {
+    "clear": "shx rm -rf dist && shx echo Clear Dist File DONE!",
     "dev": "export NODE_ENV=develpoment && webpack-dev-server -d --config webpack/webpack.dev.babel.js",
-    "build": "export NODE_ENV=production && webpack --config webpack/webpack.prod.babel.js -p"
+    "build": "shx rm -rf dist && export NODE_ENV=production && webpack --config webpack/webpack.prod.babel.js -p",
+    "build:no": "export NODE_ENV=production && webpack --config webpack/webpack.prod.babel.js -p"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
-    "babel-register": "^6.26.0",
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.1",
     "file-loader": "^1.1.5",

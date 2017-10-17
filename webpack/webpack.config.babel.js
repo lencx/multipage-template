@@ -23,9 +23,7 @@ const webpackConf = {
     output: {
         path: resolve('dist'),
         filename: commonConf.JSFileName,
-        publicPath: process.env.NODE_ENV === 'production'
-            ? buildConf.assetsPublicPath
-            : devConf.assetsPublicPath
+        publicPath: env ? buildConf.assetsPublicPath : devConf.assetsPublicPath
     },
     module: {
         rules: []
@@ -107,12 +105,12 @@ webpackConf.module.rules = [
  */
 webpackConf.plugins.push(
     new webpack.optimize.CommonsChunkPlugin({
-        name: 'common',
+        name: 'commons',
         minChunks: 2
     }),
     new webpack.optimize.CommonsChunkPlugin({
-        name: 'common',
-        chunks: ['commom']
+        name: 'commons',
+        chunks: ['commons']
     }),
     ExtactPlugin,
     new webpack.optimize.ModuleConcatenationPlugin()
@@ -123,17 +121,23 @@ webpackConf.plugins.push(
  * Multi page
  */
 for(let page in entryPug) {
+    let isInject = true
+    commonConf.injectIgnore.some(i => {
+        if(i === page) return isInject = false
+    })
+    // console.log(page, '=>', isInject)
     let conf = {
         filename: page + '.html',
         template: entryPug[page],
-        inject: true,
-        chunks: [page, 'common'],
+        inject: isInject,
+        chunks: [page, 'commons'].concat(commonConf.commonJsFile),
         minify: {
             removeComments: true,
             collapseWhitespace: true
         },
         chunksSortMode: 'dependency'
     }
+    // console.log(conf)
     webpackConf.plugins.push(new HtmlWebpackPlugin(conf))
 }
 

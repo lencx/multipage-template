@@ -14,11 +14,14 @@ function getEntry(globPath) {
     
     glob.sync(globPath).forEach(entry => {
         pathname = entry.indexOf('.js') > 0
-            ? entry.split('src/js/')[1].split('.')[0]
+            ? pathname = entry.indexOf('/page') > 0
+            ? entry.split('src/js/page/')[1].split('.')[0]
+            : entry.split('src/js/')[1].split('.')[0]
             : entry.split('src/view/page/')[1].split('.')[0]
+        
         entries[pathname] = entry
     })
-    console.log(entries)
+    
     return entries
 }
 
