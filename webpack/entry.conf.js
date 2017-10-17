@@ -4,7 +4,7 @@ const path = require('path')
 import { resolve } from './utils'
 
 let globPath = {
-    js: resolve('src/js/**/*.js'),
+    js: resolve('src/js/**/*.+(t|j)s'),
     pug: resolve('src/view/page/**/*.pug'),
 }
 
@@ -13,7 +13,7 @@ function getEntry(globPath) {
     let pathname
     
     glob.sync(globPath).forEach(entry => {
-        pathname = entry.indexOf('.js') > 0
+        pathname = entry.indexOf('.ts') > 0 || entry.indexOf('.js') > 0
             ? entry.indexOf('/page') > 0
             ? entry.split('src/js/page/')[1].split('.')[0]
             : entry.split('src/js/')[1].split('.')[0]

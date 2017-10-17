@@ -36,7 +36,7 @@ const webpackConf = {
  * Alias
  */
 webpackConf.resolve = {
-    extensions: ['.js', '.scss', '.json'],
+    extensions: ['.ts', '.tsx', '.js', '.scss'],
     alias: {
         '@': resolve('src'),
         '@sass': resolve('src/sass'),
@@ -49,8 +49,10 @@ webpackConf.resolve = {
  * Rule
  */
 webpackConf.module.rules = [
-    // TODO: TS
     {
+        test: /\.tsx?$/,
+        loader: 'ts-loader'
+    }, {
         test: /\.js$/,
         // loader: 'source-map-loader'
         loader: 'babel-loader',

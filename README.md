@@ -1,14 +1,30 @@
-# TPL
+# Multipage Template
+
+## Config
+
+### webpack.config.js
+
+|Key|Value|
+|:---|:---|
+|entry file type|`.ts` or `.js`|
+
+### TS
+
+> tsconfig.json
+
+```json
+// true: allow use ts or js
+"allowJs": true
+```
 
 ## Install package
 
-### Core
+### Webpack
 
 * webpack
 * webpack-dev-server
 * file-loader
 * url-loader
-* extract-text-webpack-plugin
 
 ### Tools
 
@@ -28,7 +44,7 @@
 
 <!-- * babel-register -->
 
-### Pug
+### Pug Tempalte
 
 * pug
 * raw-loader
@@ -45,6 +61,7 @@
 * postcss-loader
 * postcss-cssnext
 * lost
+* extract-text-webpack-plugin
 
 ### HTTP
 

@@ -1,6 +1,6 @@
 {
-  "name": "tpl",
-  "version": "1.1.0",
+  "name": "multipage-template",
+  "version": "1.1.1",
   "description": "TypeScript + Pug + Scss + Webpack",
   "repository": "git@github.com:lencx/multipage-template.git",
   "author": "Len <cxin1314@gmail.com>",
@@ -11,7 +11,6 @@
     "build:no": "export NODE_ENV=production && webpack --config webpack/webpack.prod.babel.js -p"
   },
   "devDependencies": {
-    "axios": "^0.16.2",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
@@ -38,5 +37,8 @@
     "webpack-dev-server": "^2.9.1",
     "webpack-merge": "^4.1.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.16.2"
+  }
 }
