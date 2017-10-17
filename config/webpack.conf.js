@@ -23,8 +23,13 @@ module.exports = {
         stats: 'errors-only',
         // https://webpack.js.org/configuration/devtool/#devtool
         devtool: 'cheap-module-eval-source-map',
+
+        // Interface
         proxyTable: {
-            // 
+            '/api/*': {
+                target: 'http://www.example.com',
+                secure: false
+            }
         },
         cssSourceMap: true
     }

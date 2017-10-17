@@ -11,6 +11,7 @@
     "build:no": "export NODE_ENV=production && webpack --config webpack/webpack.prod.babel.js -p"
   },
   "devDependencies": {
+    "axios": "^0.16.2",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",

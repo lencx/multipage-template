@@ -2,7 +2,7 @@
 
 ## Install package
 
-> Core
+### Core
 
 * webpack
 * webpack-dev-server
@@ -10,16 +10,17 @@
 * url-loader
 * extract-text-webpack-plugin
 
->> tool
+### Tools
+
 * shx
 * friendly-errors-webpack-plugin
 
-> TypeScript
+### TypeScript
 
 * typescript
 * ts-loader
 
-> Babel
+### Babel
 
 * babel-core
 * babel-loader
@@ -27,14 +28,14 @@
 
 <!-- * babel-register -->
 
-> Pug
+### Pug
 
 * pug
 * raw-loader
 * pug-html-loader
 * html-webpack-plugin
 
-> CSS Precompiled
+### CSS Precompiled
 
 * style-loader
 * css-loader
@@ -44,3 +45,7 @@
 * postcss-loader
 * postcss-cssnext
 * lost
+
+### HTTP
+
+* axios

@@ -8,6 +8,8 @@ import { devConf } from './../config/webpack.conf'
 import { webpackConf } from './webpack.config.babel'
 import { resolve } from './utils'
 
+let proxyTable = devConf.proxyTable
+
 module.exports = webpackMerge(webpackConf, {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
@@ -19,11 +21,6 @@ module.exports = webpackMerge(webpackConf, {
         port: devConf.port,
         open: devConf.autoOpenBrowser,
         stats: devConf.stats,
-        proxy: {
-            '/api/*': {
-                target: '',
-                secure: false
-            }
-        }
+        proxy: proxyTable
     },
 })
