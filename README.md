@@ -1,16 +1,42 @@
 # Multipage Template
 
+## Command
+
+```bash
+# install package
+yarn
+
+# start dev service
+yarn dev
+
+# clear dist file
+yarn clear
+
+# build dist file(delete original file)
+yarn build
+
+# build dist file(Don't delete original file)
+yarn build:no
+
+# add package
+yarn add <package name> [--dev]
+
+# remove package
+yarn remove <package name>
+```
+
 ## Config
 
-### webpack.config.js
+### webpack Config
 
-|Key|Value|
+|Name|Description|
 |:---|:---|
 |entry file type|`.ts` or `.js`|
+|webpack config(`dev` && `prod`)|[webpack conf](./config/webpack.conf.js)|
 
-### TS
+### TS Config
 
-> tsconfig.json
+> [tsconfig.json](./tsconfig.json)
 
 ```json
 // true: allow use ts or js

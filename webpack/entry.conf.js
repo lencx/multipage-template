@@ -8,16 +8,20 @@ let globPath = {
     pug: resolve('src/view/page/**/*.pug'),
 }
 
+function fileKey(file, regexp) {
+    return file.split(regexp)[1].split('.')[0]
+}
+
 function getEntry(globPath) {
     let entries = {}
     let pathname
     
     glob.sync(globPath).forEach(entry => {
-        pathname = entry.indexOf('.ts') > 0 || entry.indexOf('.js') > 0
+        pathname = /\.(t|j)s$/.test(entry)
             ? entry.indexOf('/page') > 0
-            ? entry.split('src/js/page/')[1].split('.')[0]
-            : entry.split('src/js/')[1].split('.')[0]
-            : entry.split('src/view/page/')[1].split('.')[0]
+            ? fileKey(entry, 'src/js/page/')
+            : fileKey(entry, 'src/js/')
+            : fileKey(entry, 'src/view/page/')
         
         entries[pathname] = entry
     })

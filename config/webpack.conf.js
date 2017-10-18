@@ -27,8 +27,7 @@ module.exports = {
         // Interface
         proxyTable: {
             '/api/*': {
-                target: 'http://101.81.18.134:7088',
-                // target: 'http://www.example.com',
+                target: 'http://www.example.com',
                 secure: false
             }
         },
