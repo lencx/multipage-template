@@ -6,14 +6,14 @@
   "author": "Len <cxin1314@gmail.com>",
   "scripts": {
     "clear": "shx rm -rf dist && shx echo Clear Dist File DONE!",
-    "dev": "export NODE_ENV=develpoment && webpack-dev-server -d --config webpack/webpack.dev.babel.js",
-    "build": "shx rm -rf dist && export NODE_ENV=production && webpack --config webpack/webpack.prod.babel.js -p",
-    "build:no": "export NODE_ENV=production && webpack --config webpack/webpack.prod.babel.js -p"
+    "dev": "cross-env NODE_ENV=develpoment webpack-dev-server -d --config webpack/webpack.dev.babel.js",
+    "build": "shx rm -rf dist && cross-env NODE_ENV=production webpack --config webpack/webpack.prod.babel.js -p"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
+    "cross-env": "^5.1.0",
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.1",
     "file-loader": "^1.1.5",
@@ -39,6 +39,9 @@
   },
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.16.2"
+    "@cycle/dom": "^18.3.0",
+    "@cycle/run": "^3.3.0",
+    "axios": "^0.16.2",
+    "xstream": "^11.0.0"
   }
 }

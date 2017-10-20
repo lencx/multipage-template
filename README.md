@@ -55,6 +55,7 @@ yarn remove <package name>
 ### Tools
 
 * shx
+* cross-env
 * friendly-errors-webpack-plugin
 
 ### TypeScript
@@ -92,3 +93,9 @@ yarn remove <package name>
 ### HTTP
 
 * axios
+
+### Lib
+
+* @cycle/dom
+* @cycle/run
+* xstream
