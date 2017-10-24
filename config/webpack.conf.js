@@ -4,13 +4,13 @@ const hash = 8
 
 module.exports = {
     commonConf: {
-        CSSFileName: `css/[name].[hash:${hash}].css`,
-        JSFileName: `js/[name].[hash:${hash}].js`,
-        injectIgnore: ['404', 'about/index'],
-        commonJsFile: ['main', 'lib/lib-a']
+        CSSFileName: `css/[name].css`,
+        JSFileName: `js/[name].js`,
+        // CSSFileName: `css/[name].[hash:${hash}].css`,
+        // JSFileName: `js/[name].[hash:${hash}].js`,
+        injectIgnore: ['404', 'about/index']
     },
     buildConf: {
-        prodSourceMap: false,
         assetsPublicPath: '/'
     },
     devConf: {
@@ -27,10 +27,10 @@ module.exports = {
         // Interface
         proxyTable: {
             '/api/*': {
-                target: 'http://www.example.com',
+                // target: 'http://www.example.com',
                 secure: false
             }
         },
-        cssSourceMap: true
+        hashExt: true
     }
 }

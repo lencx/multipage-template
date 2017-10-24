@@ -22,10 +22,10 @@ function getEntry(globPath) {
             ? fileKey(entry, 'src/js/page/')
             : fileKey(entry, 'src/js/')
             : fileKey(entry, 'src/view/page/')
-        
+            
         entries[pathname] = entry
     })
-
+    
     return entries
 }
 

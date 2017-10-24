@@ -51,6 +51,7 @@ yarn remove <package name>
 * webpack-dev-server
 * file-loader
 * url-loader
+* expose-loader(`jQuery`)
 
 ### Tools
 
@@ -62,6 +63,7 @@ yarn remove <package name>
 
 * typescript
 * ts-loader
+* @types/jquery
 
 ### Babel
 
@@ -96,6 +98,5 @@ yarn remove <package name>
 
 ### Lib
 
-* @cycle/dom
-* @cycle/run
-* xstream
+* jQuery
+* Rxjs

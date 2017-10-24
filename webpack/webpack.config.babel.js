@@ -19,7 +19,9 @@ const ExtactPlugin = new ExtractTextPlugin({
 // console.log(process.env.NODE_ENV)
 
 const webpackConf = {
-    entry: entryJs,
+    entry: Object.assign(entryJs, {
+        'vendor': ['jquery']
+    }),
     output: {
         path: resolve('dist'),
         filename: commonConf.JSFileName,
@@ -40,7 +42,8 @@ webpackConf.resolve = {
     alias: {
         '@': resolve('src'),
         '@sass': resolve('src/sass'),
-        '@img': resolve('src/img')
+        '@img': resolve('src/img'),
+        '@js': resolve('src/js')
     }
 }
 
@@ -78,6 +81,15 @@ webpackConf.module.rules = [
             ]
         })
     }, {
+        test: require.resolve('jquery'),
+        use: [{
+            loader: 'expose-loader',
+            options: 'jQuery'
+        }, {
+            loader: 'expose-loader',
+            options: '$'
+        }]
+    }, {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
@@ -107,12 +119,12 @@ webpackConf.module.rules = [
  */
 webpackConf.plugins.push(
     new webpack.optimize.CommonsChunkPlugin({
-        name: 'commons',
-        minChunks: 2
+        name: 'vendor',
+        minChunks: Infinity
     }),
     new webpack.optimize.CommonsChunkPlugin({
         name: 'commons',
-        chunks: ['commons']
+        minChunks: 2
     }),
     ExtactPlugin,
     new webpack.optimize.ModuleConcatenationPlugin()
@@ -132,11 +144,12 @@ for(let page in entryPug) {
         filename: page + '.html',
         template: entryPug[page],
         inject: isInject,
-        chunks: [page, 'commons'].concat(commonConf.commonJsFile),
+        chunks: [page, 'commons', 'vendor', 'main'],
         minify: {
             removeComments: true,
             collapseWhitespace: true
         },
+        hash: devConf.hashExt,
         chunksSortMode: 'dependency'
     }
     // console.log(conf)
