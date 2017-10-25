@@ -7,7 +7,7 @@
   "scripts": {
     "clear": "shx rm -rf dist && shx echo Clear Dist File DONE!",
     "dev": "cross-env NODE_ENV=develpoment webpack-dev-server -d --config webpack/webpack.dev.babel.js",
-    "build": "shx rm -rf dist && cross-env NODE_ENV=production webpack --config webpack/webpack.prod.babel.js -p"
+    "build": "shx rm -rf dist && cross-env NODE_ENV=production webpack --config webpack/webpack.prod.babel.js -p --progress --hide-modules"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -39,9 +39,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@cycle/dom": "^18.3.0",
-    "@cycle/run": "^3.3.0",
+    "@types/jquery": "^3.2.15",
     "axios": "^0.16.2",
-    "xstream": "^11.0.0"
+    "expose-loader": "^0.7.3",
+    "jquery": "^3.2.1",
+    "rxjs": "^5.5.0"
   }
 }

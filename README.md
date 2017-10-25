@@ -15,9 +15,6 @@ yarn clear
 # build dist file(delete original file)
 yarn build
 
-# build dist file(Don't delete original file)
-yarn build:no
-
 # add package
 yarn add <package name> [--dev]
 
