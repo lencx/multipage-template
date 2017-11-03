@@ -3,22 +3,30 @@
 ## Command
 
 ```bash
-# install package
+### install package ###
 yarn
 
-# start dev service
-yarn dev
+### start dev service ###
+# All Modules
+yarn dev:all
+# build dist file(delete original file)
+yarn build:all
 
-# clear dist file
+# A Module
+yarn dev:a
+yarn build:a
+
+# B Module
+yarn dev:b
+yarn build:b
+
+### clear dist file ###
 yarn clear
 
-# build dist file(delete original file)
-yarn build
-
-# add package
+#### add package ###
 yarn add <package name> [--dev]
 
-# remove package
+### remove package ###
 yarn remove <package name>
 ```
 

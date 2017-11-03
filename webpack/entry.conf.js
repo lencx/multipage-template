@@ -13,7 +13,7 @@ function getEntry(globPath) {
     let pathname
     
     glob.sync(globPath).forEach(entry => {
-        pathname = /\.j?ts$/.test(entry)
+        pathname = /\.(j|t)s$/.test(entry)
             ? entry.indexOf('/page') > 0
             ? fileKey(entry, 'src/js/page/')
             : fileKey(entry, 'src/js/')
