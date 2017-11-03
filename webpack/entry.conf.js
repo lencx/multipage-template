@@ -2,11 +2,7 @@ const glob = require('glob')
 const path = require('path')
 
 import { resolve } from './utils'
-
-let globPath = {
-    js: resolve('src/js/**/*.+(t|j)s'),
-    pug: resolve('src/view/page/**/*.pug'),
-}
+import { globEntryPath } from './../config/webpack.conf'
 
 function fileKey(file, regexp) {
     return file.split(regexp)[1].split('.')[0]
@@ -17,7 +13,7 @@ function getEntry(globPath) {
     let pathname
     
     glob.sync(globPath).forEach(entry => {
-        pathname = /\.(t|j)s$/.test(entry)
+        pathname = /\.j?ts$/.test(entry)
             ? entry.indexOf('/page') > 0
             ? fileKey(entry, 'src/js/page/')
             : fileKey(entry, 'src/js/')
@@ -26,10 +22,22 @@ function getEntry(globPath) {
         entries[pathname] = entry
     })
     
+    // console.log(entries)
     return entries
 }
 
+let entryJsFiles
+let entryPugFiles
+
+Object.keys(globEntryPath).forEach(i => {
+    // console.log(i, '=>', process.env.PROD_MODULE)
+    if(i === process.env.PROD_MODULE) {
+        entryJsFiles = globEntryPath[i].js
+        entryPugFiles = globEntryPath[i].pug
+    }
+})
+
 module.exports = {
-    entryJs: getEntry(globPath.js),
-    entryPug: getEntry(globPath.pug)
+    entryJs: getEntry(entryJsFiles),
+    entryPug: getEntry(entryPugFiles)
 }

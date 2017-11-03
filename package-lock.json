@@ -6,8 +6,12 @@
   "author": "Len <cxin1314@gmail.com>",
   "scripts": {
     "clear": "shx rm -rf dist && shx echo Clear Dist File DONE!",
-    "dev": "cross-env NODE_ENV=develpoment webpack-dev-server -d --config webpack/webpack.dev.babel.js",
-    "build": "shx rm -rf dist && cross-env NODE_ENV=production webpack --config webpack/webpack.prod.babel.js -p --progress --hide-modules"
+    "dev:all": "cross-env NODE_ENV=develpoment PROD_MODULE=all webpack-dev-server -d --config webpack/webpack.dev.babel.js",
+    "build:all": "shx rm -rf dist && cross-env NODE_ENV=production PROD_MODULE=all webpack --config webpack/webpack.prod.babel.js -p --progress --hide-modules",
+    "dev:a": "cross-env NODE_ENV=develpoment PROD_MODULE=model_A webpack-dev-server -d --config webpack/webpack.dev.babel.js",
+    "build:a": "shx rm -rf dist && cross-env NODE_ENV=production PROD_MODULE=model_A webpack --config webpack/webpack.prod.babel.js -p --progress --hide-modules",
+    "dev:b": "cross-env NODE_ENV=develpoment PROD_MODULE=model_B webpack-dev-server -d --config webpack/webpack.dev.babel.js",
+    "build:b": "shx rm -rf dist && cross-env NODE_ENV=production PROD_MODULE=model_B webpack --config webpack/webpack.prod.babel.js -p --progress --hide-modules"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 import { resolve, envInfo } from './utils'
 import { entryJs, entryPug } from './entry.conf'
-import { commonConf, buildConf, devConf } from './../config/webpack.conf'
+import { commonConf, buildConf, devConf, alias } from './../config/webpack.conf'
 
 const env = process.env.NODE_ENV === 'production'
 env ? envInfo('PROD ENV') : envInfo('DVE ENV')
@@ -144,7 +144,7 @@ for(let page in entryPug) {
         filename: page + '.html',
         template: entryPug[page],
         inject: isInject,
-        chunks: [page, 'commons', 'vendor', 'main'],
+        chunks: [page, 'commons', 'vendor', `${page.split('/')[0]}/main`],
         minify: {
             removeComments: true,
             collapseWhitespace: true
