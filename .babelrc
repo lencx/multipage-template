@@ -1,7 +1,3 @@
 {
-    "presets": ["env"],
-    "ignore": [
-        "dist/**/*.js",
-        "node_modules/"
-    ]
+    "presets": ["env"]
 }
