@@ -1,13 +1,13 @@
 const glob = require('glob')
 import { resolve, model } from './utils'
 
+let _m = model === 'all' ? '' : model
 const currModel = {
-    js: resolve('src/model', model, '**/*.js'),
-    pug: resolve('src/model', model, '**/*.pug')
+    js: resolve(`src/model/${_m}/**/*.js`),
+    pug: resolve(`src/model/${_m}/**/*.pug`)
 }
 
-console.log(currModel)
-
+// console.log(currModel)
 const fileKey = f => f.split('/src/model/')[1].split('.')[0]
 
 function getEntry(globPath) {
@@ -19,13 +19,13 @@ function getEntry(globPath) {
             : fileKey(entry)
         entries[pathname] = entry
     })
-    console.log(entries)
+    // console.log(entries)
     return entries
 }
 
 let entryJS = getEntry(currModel.js)
 let entryPUG = getEntry(currModel.pug)
-console.log(entryJS)
+// console.log(entryJS)
 
 export {
     entryJS,
