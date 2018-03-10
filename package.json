@@ -6,18 +6,19 @@
   "author": "Len <cxin1314@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "start": "./.bin/lx",
+    "model": "./.bin/lx ls",
     "rm:dist": "shx rm -rf dist && shx echo Clear Dist File DONE!",
-    "serve": "webpack-dev-server --mode development --open",
     "build": "yarn rm:dist && webpack --mode production",
-    "dev:a": "yarn serve",
-    "build:a": "yarn build",
-    "dev:b": "yarn serve",
-    "build:b": "yarn build"
+    "serve": "webpack-dev-server --mode devlopment --open",
+    "dev:": "yarn serve",
+    "build:": "yarn build"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
+    "cross-env": "^5.1.3",
     "css-loader": "^0.28.10",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "html-loader": "^0.5.5",

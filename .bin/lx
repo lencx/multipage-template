@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+
+const sh = require('shelljs')
+const fs = require('fs')
+const _p = fs.readFileSync('package.json', 'utf8')
+const chalk = require('chalk')
+const lg = console.log
+
+const arg = process.argv
+const param1 = arg[2]
+const param2 = arg[3]
+
+// if(param1 === 'ls') {
+//     let _files = ''
+//     sh.ls('src/model').forEach(file => {
+//         _files += `${chalk.bgYellow('['+file+' Model] ')} `
+//     })
+//     // `${chalk.blue('[ '+file+'Model]')}`
+//     lg(chalk.bold.black(_files))
+// } else (param1)
+
+sh.sed('-i', new RegExp(/dev:\w+/), `dev:${param2}`, 'package.json')
+switch (param1) {
+    case 'ls':
+        lsModel()
+        break
+    case 'dev':
+        console.log(param1, param2)
+        sh.sed('-i', new RegExp(/dev:\w+/), `dev:${param2}`, 'package.json')
+        break
+    case 'build':
+        sh.sed('-i', new RegExp(/build:\w+/), `build:${param2}`, 'package.json')
+        break
+}
+
+
+function lsModel() {
+    let _files = ''
+    sh.ls('src/model').forEach(file => {
+        _files += `${chalk.bgYellow('['+file+' Model] ')} `
+    })
+    lg(chalk.bold.black(_files))
+}
+// console.log(process.argv)
