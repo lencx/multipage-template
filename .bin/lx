@@ -1,44 +1,28 @@
 #!/usr/bin/env node
 
-const sh = require('shelljs')
-const fs = require('fs')
-const _p = fs.readFileSync('package.json', 'utf8')
+require('shelljs/global')
 const chalk = require('chalk')
+const arg = process.argv
+const param = arg[2]
+const param2 = arg[3]
 const lg = console.log
 
-const arg = process.argv
-const param1 = arg[2]
-const param2 = arg[3]
-
-// if(param1 === 'ls') {
-//     let _files = ''
-//     sh.ls('src/model').forEach(file => {
-//         _files += `${chalk.bgYellow('['+file+' Model] ')} `
-//     })
-//     // `${chalk.blue('[ '+file+'Model]')}`
-//     lg(chalk.bold.black(_files))
-// } else (param1)
-
-sh.sed('-i', new RegExp(/dev:\w+/), `dev:${param2}`, 'package.json')
-switch (param1) {
-    case 'ls':
-        lsModel()
-        break
-    case 'dev':
-        console.log(param1, param2)
-        sh.sed('-i', new RegExp(/dev:\w+/), `dev:${param2}`, 'package.json')
-        break
-    case 'build':
-        sh.sed('-i', new RegExp(/build:\w+/), `build:${param2}`, 'package.json')
-        break
-}
-
-
-function lsModel() {
+if(param === 'ls') {
     let _files = ''
-    sh.ls('src/model').forEach(file => {
+    ls('src/model').forEach(file => {
         _files += `${chalk.bgYellow('['+file+' Model] ')} `
     })
     lg(chalk.bold.black(_files))
+} else if(param === 'init') {
+    if(param2 === undefined) exit(1)
+    let _d = `dev:${param2}`
+    let _b = `build:${param2}`
+    sed('-i', new RegExp(/dev:(\w+)?/), _d, 'package.json')
+    sed('-i', new RegExp(/build:(\w+)?/), _b, 'package.json')
+    let _d2 = chalk.red(` yarn ${_d} `)
+    let _b2 = chalk.red(` yarn ${_b} `)
+    lg(`${chalk.bgBlack(_d2)}${chalk.bgBlue(' '+param2+' Model => Start Server! ')}`)
+    lg(`${chalk.bgBlack(_b2)}${chalk.bgBlue(' '+param2+' Model => Build Project! ')}`)
+} else {
+    exit(1)
 }
-// console.log(process.argv)

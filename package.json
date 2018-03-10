@@ -1,16 +1,16 @@
 {
   "name": "multipage-template",
-  "version": "2.0",
+  "version": "2.0.1",
   "description": "webpack4 + pug + sass + postcss",
   "repository": "git@github.com:lencx/multipage-template.git",
   "author": "Len <cxin1314@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "./.bin/lx",
+    "start": "./.bin/lx init",
     "model": "./.bin/lx ls",
     "rm:dist": "shx rm -rf dist && shx echo Clear Dist File DONE!",
     "build": "yarn rm:dist && webpack --mode production",
-    "serve": "webpack-dev-server --mode devlopment --open",
+    "serve": "webpack-dev-server --mode development --open",
     "dev:": "yarn serve",
     "build:": "yarn build"
   },

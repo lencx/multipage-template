@@ -10,7 +10,7 @@ const ExtractSCSS = new ExtractTextPlugin({
     filename: 'css/[name].css',
     allChunks: true
 })
-console.log(progress.env)
+// console.log(progress.env)
 
 let webpackConf = {
     entry: entryJS,
