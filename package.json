@@ -6,7 +6,8 @@
   "author": "Len <cxin1314@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "./.bin/lx init",
+    "cmd": "./.bin/lx -h",
+    "start": "./.bin/lx generate",
     "model": "./.bin/lx ls",
     "rm:dist": "shx rm -rf dist && shx echo Clear Dist File DONE!",
     "build": "yarn rm:dist && webpack --mode production",

@@ -1,11 +1,44 @@
 #!/usr/bin/env node
 
 require('shelljs/global')
+const program = require('commander')
 const chalk = require('chalk')
 const arg = process.argv
 const param = arg[2]
 const param2 = arg[3]
 const lg = console.log
+
+const lgIndent = str => lg(' '.repeat(2) + chalk.grey('$ ') + chalk.green(str))
+const yCmd = () => {
+    lg('Please run `'+chalk.green('yarn cmd')+'` to see the executable commands')
+    exit(1)
+}
+
+program
+    .version('0.1.0')
+    .option('yarn <model_name>', 'All modules in the project')
+    .option('yarn start <model_name>', 'Generate the current module configuration ('+chalk.red('package.json')+') file')
+    .option(' ', 'When `model_name` is `all`, `start service` or `build project` for all modules')
+    .option('yarn dev:[model_name]', 'Run `'+chalk.green('yarn start <model_name>') +'` before starting the service')
+    .option('yarn build:[model_name]', 'Run `'+chalk.green('yarn start <model_name>') +'` before building the project')
+
+program.on('--help', function() {
+    lg('')
+    lg(chalk.yellow('Examples: '))
+    lg('*******************')
+    lgIndent('yarn model')
+    lgIndent('yarn start all')
+    lgIndent('yarn dev:all')
+    lgIndent('yarn build:all')
+    lg('*******************')
+    lgIndent('yarn start a')
+    lgIndent('yarn dev:a')
+    lgIndent('yarn build:a')
+    lg('*******************')
+})
+
+program.parse(process.argv)
+
 
 if(param === 'ls') {
     let _files = ''
@@ -13,8 +46,8 @@ if(param === 'ls') {
         _files += `${chalk.bgYellow('['+file+' Model] ')} `
     })
     lg(chalk.bold.black(_files))
-} else if(param === 'init') {
-    if(param2 === undefined) exit(1)
+} else if(param === 'generate') {
+    if(param2 === undefined) yCmd()
     let _d = `dev:${param2}`
     let _b = `build:${param2}`
     sed('-i', new RegExp(/dev:(\w+)?/), _d, 'package.json')
@@ -23,6 +56,4 @@ if(param === 'ls') {
     let _b2 = chalk.red(` yarn ${_b} `)
     lg(`${chalk.bgBlack(_d2)}${chalk.bgBlue(' '+param2+' Model => Start Server! ')}`)
     lg(`${chalk.bgBlack(_b2)}${chalk.bgBlue(' '+param2+' Model => Build Project! ')}`)
-} else {
-    exit(1)
-}
+} else yCmd()

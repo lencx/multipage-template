@@ -4,6 +4,8 @@
 # model lists
 yarn model
 
+yarn cmd
+
 yarn start <model_name|all>
 
 # all modules
