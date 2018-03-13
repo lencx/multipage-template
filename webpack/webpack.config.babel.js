@@ -3,13 +3,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-import { resolve, isPROD } from './config/utils'
-import { entryJS, entryPUG } from './config/entry'
+import { resolve, isPROD } from './utils'
+import { entryJS, entryPUG } from './entry'
+import { devConf, proxyTable } from './../config/conf'
 
 const ExtractSCSS = new ExtractTextPlugin({
     filename: 'css/[name].css',
     allChunks: true
 })
+
+// console.log(entryJS)
+// console.log(entryPUG)
 // console.log(progress.env)
 
 let webpackConf = {
@@ -59,8 +63,17 @@ let webpackConf = {
     },
     plugins: [
         ExtractSCSS,
-        new webpack.optimize.ModuleConcatenationPlugin()
-    ]
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify(isPROD ? 'DEV' : 'PROD')
+            }
+        })
+    ],
+    devServer: {
+        host: devConf.host,
+        port: devConf.port,
+        proxy: proxyTable
+    }
 }
 
 isPROD ? webpackConf.plugins.push(new ProgressBarPlugin()) : ''

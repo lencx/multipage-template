@@ -4,6 +4,7 @@
 # model lists
 yarn model
 
+# Commands Help
 yarn cmd
 
 yarn start <model_name|all>

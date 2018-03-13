@@ -43,9 +43,9 @@ program.parse(process.argv)
 if(param === 'ls') {
     let _files = ''
     ls('src/model').forEach(file => {
-        _files += `${chalk.bgYellow('['+file+' Model] ')} `
+        _files += `${chalk.bgBlue(' [ '+file+' Model ] ')} `
     })
-    lg(chalk.bold.black(_files))
+    lg(chalk.bold.white(_files))
 } else if(param === 'generate') {
     if(param2 === undefined) yCmd()
     let _d = `dev:${param2}`

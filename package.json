@@ -10,10 +10,10 @@
     "start": "./.bin/lx generate",
     "model": "./.bin/lx ls",
     "rm:dist": "shx rm -rf dist && shx echo Clear Dist File DONE!",
-    "build": "yarn rm:dist && webpack --mode production",
-    "serve": "webpack-dev-server --mode development --open",
-    "dev:": "yarn serve",
-    "build:": "yarn build"
+    "build": "yarn rm:dist && webpack --mode production --config ./webpack/webpack.config.babel.js",
+    "serve": "webpack-dev-server --mode development --config ./webpack/webpack.config.babel.js --open",
+    "dev:all": "yarn serve",
+    "build:all": "yarn build"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
