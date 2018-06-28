@@ -1,8 +1,8 @@
 {
-  "name": "web",
-  "version": "1.0.0",
-  "description": "web",
-  "main": "index.js",
+  "name": "multipage-template",
+  "version": "2.1.0",
+  "description": "Multi-module(webpack@4, pug, scss, postcss, babel)",
+  "repository": "git@github.com:lencx/multipage-template.git",
   "author": "Len <cxin1314@gmail.com>",
   "license": "MIT",
   "scripts": {

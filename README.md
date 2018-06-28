@@ -22,3 +22,11 @@ yarn dev-h
 * www(website)
 * app(app share)
 * h5(activity)
+
+```js
+// config/webpack.config.js
+const model = {
+    // enable model: all | app | h5
+    enableModel: 'all'
+}
+```
