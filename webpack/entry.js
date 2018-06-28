@@ -1,33 +1,27 @@
-const glob = require('glob')
-import { resolve, model } from './utils'
+import glob from 'glob'
+import { model as _model } from './../config/webpack.config'
 
-let _m = model === 'all' ? '' : model
-const currModel = {
-    js: resolve(`src/model/${_m}/**/*.js`),
-    pug: resolve(`src/model/${_m}/**/*.pug`)
-}
-
-// console.log(currModel)
-const fileKey = f => f.split('/src/model/')[1].split('.')[0]
-
-function getEntry(globPath) {
+function getEntry(model, type) {
     let entries = {}
-
-    glob.sync(globPath).forEach(entry => {
-        let pathname = /\.js$/.test(entry)
-            ? fileKey(entry).split('/js/').join('/')
-            : fileKey(entry)
+    // console.log(`===========${type}==========`)
+    glob.sync(_model[model][type]).forEach(entry => {
+        // console.log(entry)
+        let tmpExp = entry.match(/(src\/)(.*)\/(view|js)\/(.*)\./)
+        let modelName = tmpExp[2]
+        if (modelName == 'assets') return false
+        let tmpModelPath = tmpExp[4]
+        let pathname = `${modelName}${type === 'pug' ? '/' : '~'}${tmpModelPath}`
         entries[pathname] = entry
+        // console.log(`model: ${modelName} --- path: ${tmpModelPath}`)
     })
     // console.log(entries)
     return entries
 }
 
-let entryJS = getEntry(currModel.js)
-let entryPUG = getEntry(currModel.pug)
-// console.log(entryJS)
+const entryJS = getEntry(_model.enableModel, 'js')
+const entryPUG = getEntry(_model.enableModel, 'pug')
 
 export {
     entryJS,
-    entryPUG
+    entryPUG,
 }

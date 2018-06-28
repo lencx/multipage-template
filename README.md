@@ -1,18 +1,24 @@
-# Multipage Template
+# Bonday website
+
+## Command
 
 ```bash
-# model lists
-yarn model
+# install
+yarn
 
-# Commands Help
-yarn cmd
+yarn dev
 
-yarn start <model_name|all>
+yarn build
 
-# all modules
-yarn dev:all
-
-# a module
-# `http://localhost:8080/a`
-yarn dev:a
+### help ###
+# webpack-cli
+yarn cli-h
+# webpack-dev-server
+yarn dev-h
 ```
+
+## Model
+
+* www(website)
+* app(app share)
+* h5(activity)

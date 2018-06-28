@@ -1,10 +1,16 @@
-const path = require('path')
+import path from 'path'
+
 const resolve = (...dir) => path.resolve(__dirname, '..', ...dir)
-const isPROD = ~process.env.npm_lifecycle_script.indexOf('production') ? true : false
-const model = JSON.parse(process.env.npm_config_argv).original[0].split(':')[1]
+
+// env
+const isDEV = process.env.NODE_ENV === 'production'
+    ? false : true
+
+// username
+const OSUSER = process.env.USER || process.env.USERDOMAIN
 
 export {
     resolve,
-    isPROD,
-    model
+    isDEV,
+    OSUSER,
 }
