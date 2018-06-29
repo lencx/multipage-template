@@ -5,7 +5,7 @@
             "polyfill": false,
             "regenerator": true,
             "moduleName": "babel-runtime"
-          }]
+        }]
     ],
     "presets": ["env"],
     "ignore": [

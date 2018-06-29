@@ -1,27 +1,16 @@
-import { resolve, OSUSER } from './../webpack/utils'
+import { resolve, addModel } from './../webpack/utils'
+import { localIP, userInfo } from './../webpack/local'
 
-const isLocal = false
-const port = 8020
-const hashLen = 7
-const hasHash = true
-const inlineLimit = 10000
+// Output developer's system information(`/config/userInfo.json`)
+userInfo()
 
-const hash = hasHash ? `.[hash:${hashLen}]` : ''
-
-// user IP
-let userIP = 'localhost'
-if(!isLocal) {
-    switch (OSUSER) {
-        case 'cx':
-            userIP = 'xxx.xxx.xxx.xxx'
-            break
-        case 'ZWL':
-            userIP = 'xxx.xxx.xxx.xxx'
-            break
-        default:
-            userIP
-    }
-}
+const isLocal = false,
+    port = 8020,
+    hashLen = 7,
+    hasHash = true,
+    inlineLimit = 10000,
+    hash = hasHash ? `.[hash:${hashLen}]` : '',
+    userIP = isLocal ? 'localhost' : localIP
 
 // Model
 const model = {
@@ -31,15 +20,9 @@ const model = {
         js: resolve('src/**/js/**/*.js'),
         pug: resolve('src/**/view/**/*.pug'),
     },
-    www: {
-        js: resolve('src/www/js/**/*.js'),
-        pug: resolve('src/www/view/**/*.pug'),
-    },
-    h5: {
-        js: resolve('src/h5/js/**/*.js'),
-        pug: resolve('src/h5/view/**/*.pug'),
-    },
 }
+addModel(model, 'www')
+addModel(model, 'h5')
 
 const proxy = {
     '/api': {

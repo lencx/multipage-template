@@ -6,11 +6,17 @@ const resolve = (...dir) => path.resolve(__dirname, '..', ...dir)
 const isDEV = process.env.NODE_ENV === 'production'
     ? false : true
 
-// username
-const OSUSER = process.env.USER || process.env.USERDOMAIN
+const addModel = (obj, modelName) => {
+    return Object.assign(obj, {
+        [modelName]: {
+            js: resolve(`src/${modelName}/js/**/*.js`),
+            pug: resolve(`src/${modelName}/view/**/*.pug`),
+        }
+    })
+}
 
 export {
     resolve,
     isDEV,
-    OSUSER,
+    addModel,
 }
