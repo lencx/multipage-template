@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+
+const fs = require('fs')
+const path = require('path')
+const archiver = require('archiver')
+
+const filename = `dist_${+new Date()}`
+const dirPath = path.resolve(__dirname, '..')
+const output = fs.createWriteStream(`${dirPath}/${filename}.zip`)
+const archive = archiver('zip', {
+    zlib: {
+        level: 9
+    }
+})
+archive.pipe(output)
+
+output.on('close', () => {
+    console.log(archive.pointer() + ' total bytes')
+    console.log('archiver has been finalized and the output file descriptor has closed.')
+})
+output.on('end', () => {
+    console.log('Data has been drained')
+})
+output.on('warning', err => {
+    if(err.code === 'ENOENT') { }
+    else throw err
+})
+
+archive.directory(`${dirPath}/dist/`, false)
+archive.finalize()

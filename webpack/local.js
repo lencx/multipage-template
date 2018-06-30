@@ -1,23 +1,21 @@
 import os from 'os'
 import fs from 'fs-extra'
-import { map, filter, flatten, findKey } from 'lodash'
+import { map, filter, flatten, findKey, findIndex } from 'lodash'
 
 import { resolve } from './utils'
 
-const local = os.networkInterfaces(),
-    OSUSER = os.userInfo().username,
-    OSUSERDOMAIN = process.env.LOGNAME || process.env.USERDOMAIN,
+const OSInterfaces = os.networkInterfaces(),
+    OSUser = os.userInfo().username,
+    OSUserDomain = process.env.LOGNAME || process.env.USERDOMAIN,
     OSPlatform = os.platform(),
     platform = OSPlatform === 'darwin' ? 'macOS' : OSPlatform
 
-let localIP = flatten(map(Object.keys(local), ifname => {
-    // console.log(ifname)
-    let ipv4 = filter(local[ifname], {
+const localIP = flatten(map(Object.keys(OSInterfaces), ifname => {
+    let ipv4 = filter(OSInterfaces[ifname], {
         family: 'IPv4',
         internal: false,
     })
-    let v4 = map(ipv4, 'address')
-    return v4
+    return map(ipv4, 'address')
 }))[0]
 
 const writeJson = (filename, data) => {
@@ -27,10 +25,10 @@ const writeJson = (filename, data) => {
 const userInfo = () => {
     const filename = `${resolve('config')}/userInfo.json`
     let info = {
-        username: OSUSER,
-        'Local IP': localIP,
+        username: OSUser,
+        localIP: [localIP],
         platform,
-        'User Domain': OSUSERDOMAIN,
+        userDomain: OSUserDomain,
     }
 
     fs.exists(filename, exist => {
@@ -38,7 +36,20 @@ const userInfo = () => {
             writeJson(filename, [info])
         } else {
             fs.readJSON(filename, (err, data) => {
-                if(findKey(data, o => o.username === OSUSER) === undefined) {
+                let userExist = findKey(data, o => {
+                    if(o['userDomain'] === OSUserDomain) {
+                        if(findIndex(o['localIP'], i => i === localIP) === -1) {
+                            o['currentIP'] = localIP
+                            o['localIP'].push(localIP)
+                            writeJson(filename, data)
+                        } else if(o['currentIP'] !== localIP && o['localIP'][0] !== localIP) {
+                            o['currentIP'] = localIP
+                            writeJson(filename, data)
+                        }
+                    }
+                    return o['userDomain'] === OSUserDomain
+                })
+                if( userExist === undefined) {
                     data.push(info)
                     writeJson(filename, data)
                 }
@@ -48,7 +59,6 @@ const userInfo = () => {
 }
 
 export {
-    OSUSER,
     localIP,
     userInfo,
 }
