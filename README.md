@@ -1,4 +1,4 @@
-# Bonday website
+# Multipage Template
 
 ## Command
 
@@ -29,4 +29,6 @@ const model = {
     // enable model: all | app | h5
     enableModel: 'all'
 }
+// add model
+addModel(model, 'other')
 ```
