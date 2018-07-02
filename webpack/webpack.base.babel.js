@@ -7,12 +7,14 @@ import { alias, hash, inlineLimit } from './../config/webpack.config'
 
 const rules = [{
     test: /\.js$/,
-    use: [{
-        loader: 'babel-loader',
-        options: {
-            cacheDirectory: true
-        }
-    }],
+    use: [
+        {
+            loader: 'babel-loader',
+            options: {cacheDirectory: true}
+        },
+        'eslint-loader'
+    ],
+    exclude: /node_modules/,
     include: [resolve('src')]
 }, {
     test: /\.pug$/,
@@ -88,8 +90,6 @@ const webpackConf = {
 
 for(let page in entryPUG) {
     // console.log(page)
-    // let _main = page.split('/')[0] === "toefl" ? "toefl/main" : "main"
-    // // console.log(`${_m}/main`)
     let conf = {
         filename: page + '.html',
         template: entryPUG[page],
@@ -103,7 +103,6 @@ for(let page in entryPUG) {
         chunksSortMode: 'dependency'
     }
     // console.log(conf)
-    // console.log(webpackConf.plugins)
     webpackConf.plugins.push(new HtmlWebpackPlugin(conf))
 }
 

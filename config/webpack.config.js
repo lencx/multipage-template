@@ -5,7 +5,7 @@ import { localIP, userInfo } from './../webpack/local'
 userInfo()
 
 const isLocal = false,
-    port = 8020,
+    port = 6001,
     hashLen = 7,
     hasHash = true,
     inlineLimit = 10000,
