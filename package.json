@@ -1,14 +1,14 @@
 {
   "name": "multipage-template",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Multi-module(webpack@4, pug, scss, postcss, babel)",
   "repository": "git@github.com:lencx/multipage-template.git",
   "author": "Len <cxin1314@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "clear": "shx rm -r ./dist ./dist_*.zip && shx echo Clear dist file done!",
-    "dev": "cross-env NODE_ENV=develpoment webpack-dev-server --config ./webpack/webpack.dev.babel.js",
-    "build": "cross-env NODE_ENV=production webpack-cli -d --config ./webpack/webpack.prod.babel.js && yarn mv:static && yarn zip",
+    "clear": "shx rm -rf dist && shx echo Clear dist file done!",
+    "dev": "cross-env NODE_ENV=develpoment webpack-dev-server -wd --config ./webpack/webpack.dev.babel.js",
+    "build": "cross-env NODE_ENV=production webpack-cli -d --config ./webpack/webpack.prod.babel.js && yarn mv:static",
     "mv:static": "shx cp -R ./static ./dist",
     "cli-h": "webpack-cli --help",
     "dev-h": "webpack-dev-server --help",

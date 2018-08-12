@@ -38,11 +38,16 @@ const userInfo = () => {
             fs.readJSON(filename, (err, data) => {
                 let userExist = findKey(data, o => {
                     if(o['userDomain'] === OSUserDomain) {
-                        if(findIndex(o['localIP'], i => i === localIP) === -1) {
-                            o['currentIP'] = localIP
-                            o['localIP'].push(localIP)
-                            writeJson(filename, data)
-                        } else if(o['currentIP'] !== localIP && o['localIP'][0] !== localIP) {
+                        findIndex(o['localIP'], i => {
+                            if(i!==localIP) {
+                                if(findIndex(o['localIP'], i => i === localIP) === -1) {
+                                    o['currentIP'] = localIP
+                                    o['localIP'].push(localIP)
+                                    writeJson(filename, data)
+                                }
+                            }
+                        })
+                        if(o['currentIP'] !== localIP) {
                             o['currentIP'] = localIP
                             writeJson(filename, data)
                         }
