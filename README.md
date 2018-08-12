@@ -1,4 +1,4 @@
-# Bonday website
+# Multipage Template
 
 ## Command
 
@@ -19,14 +19,17 @@ yarn dev-h
 
 ## Model
 
-* www(website)
-* app(app share)
-* h5(activity)
+* www
+* app
+* h5
+* ...
 
 ```js
 // config/webpack.config.js
-const model = {
-    // enable model: all | app | h5
-    enableModel: 'all'
-}
+// all | www | h5 | ...
+const enableModel = 'all'
+// Add Model
+addModel(model, 'home')
+addModel(model, 'www')
+addModel(model, 'h5')
 ```
