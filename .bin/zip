@@ -11,7 +11,7 @@ const filename = `dist_${+new Date()}`
 fs.exists(resolve('pack'), exist => {
     if(!exist) {
         fs.mkdir(resolve('pack'), err => {
-            if (err !== null) console.error(err, 'aaa')
+            if (err !== null) console.error(err)
         })
         writePkg()
     } else writePkg()

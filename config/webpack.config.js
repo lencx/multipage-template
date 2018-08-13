@@ -23,8 +23,6 @@ const hash = hasHash ? `.[hash:${hashLen}]` : ''
 const userIP = isLocal ? 'localhost' : localIP
 /****************** Config End *********************/
 
-console.log(localIP)
-
 model = {
     enableModel,
     all: {
@@ -41,10 +39,10 @@ const proxy = {
 }
 
 const alias = {
-    '@common': resolve('src/assets'),
-    '@commonJS': resolve('src/assets/js'),
-    '@commonUtils': resolve('src/assets/utils'),
-    '@commonScss': resolve('src/assets/scss'),
+    '@pub': resolve('src/public'),
+    '@pubJS': resolve('src/public/js'),
+    '@pubUtils': resolve('src/public/utils'),
+    '@pubScss': resolve('src/public/scss'),
     '@www': resolve('src/models/www'),
     '@app': resolve('src/models/app'),
     '@h5': resolve('src/models/h5'),

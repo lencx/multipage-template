@@ -5,7 +5,31 @@ import { resolve, isDEV } from './utils'
 import { entryJS, entryPUG } from './entry'
 import { alias, hash, inlineLimit } from './../config/webpack.config'
 
-const rules = [{
+const webpackConf = {
+    entry: entryJS,
+    output: {
+        path: resolve('dist'),
+        filename: `js/[name]${hash}.js`,
+        publicPath: '/'
+    },
+    resolve: {
+        extensions: ['.js', '.scss', '.json'],
+        alias,
+    },
+    module: {
+        rules: []
+    },
+    plugins: [
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: `css/[name]${hash}.css`,
+            chunkFilename: '[id].css',
+        })
+    ],
+}
+
+webpackConf.module.rules.push({
     test: /\.js$/,
     use: [
         {
@@ -63,30 +87,7 @@ const rules = [{
             name: `fonts/[name]${hash}.[ext]`
         }
     }]
-}]
-
-const webpackConf = {
-    entry: entryJS,
-    output: {
-        path: resolve('dist'),
-        filename: `js/[name]${hash}.js`,
-        publicPath: '/'
-    },
-    resolve: {
-        extensions: ['.js', '.scss', '.json'],
-        alias,
-    },
-    module: { rules },
-    plugins: [
-        new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
-            filename: `css/[name]${hash}.css`,
-            chunkFilename: '[id].css',
-        })
-    ],
-}
-
+})
 
 for(let page in entryPUG) {
     // console.log(page)
@@ -95,7 +96,7 @@ for(let page in entryPUG) {
         template: entryPUG[page],
         inject: 'head',
         // hash: false,
-        chunks: [page.replace('/', '~'), 'commons', 'vendor'],
+        chunks: [page.replace('/', '~'), 'common', 'vendor'],
         minify: {
             removeComments: true,
             collapseWhitespace: true

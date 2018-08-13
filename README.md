@@ -1,5 +1,18 @@
 # Multipage Template
 
+```bash
+[project]
+   |- [.bin]
+   |- [config]
+   |- [src]
+   |   |- [models]
+   |   `- [public]
+   |- [static]
+   |- [webpack]
+   |- package.json
+   `- ...
+```
+
 ## Command
 
 ```bash

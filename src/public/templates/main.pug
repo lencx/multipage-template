@@ -6,5 +6,6 @@ html(lang="en")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
         title Document
     body
-        include ./footer.pug
         include ./header.pug
+        block content
+        include ./footer.pug
