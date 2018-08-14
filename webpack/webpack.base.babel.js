@@ -47,7 +47,8 @@ webpackConf.module.rules.push({
         {
             loader: 'pug-html-loader',
             options: {
-                doctype: 'html'
+                doctype: 'html',
+                basedir: resolve('src/public/templates'),
             }
         }
     ]

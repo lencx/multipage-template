@@ -1,4 +1,4 @@
-extends @pub/templates/main.pug
+extends /layout/main.pug
 
 block content
     h1 HOME
@@ -7,3 +7,6 @@ block content
             a(href='/www') www
         li
             a(href='/www/about/us.html') www/about/us
+
+    main
+        img(src="./../img/wave.png", alt="Wave")

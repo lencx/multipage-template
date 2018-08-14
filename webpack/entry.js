@@ -27,7 +27,7 @@ function getEntry(model, type) {
             // console.log(`model: ${modelName} --- path: ${tmpModelPath}`)
         }
     })
-    console.log(entries)
+    // console.log(entries)
     return entries
 }
 
