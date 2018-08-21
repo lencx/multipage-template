@@ -3,7 +3,7 @@ import path from 'path'
 const resolve = (...dir) => path.resolve(__dirname, '..', ...dir)
 
 // env
-const isDEV = process.env.NODE_ENV === 'production'
+const devMode = process.env.NODE_ENV === 'production'
     ? false : true
 
 const addModel = (obj, modelName) => {
@@ -17,6 +17,6 @@ const addModel = (obj, modelName) => {
 
 export {
     resolve,
-    isDEV,
+    devMode,
     addModel,
 }

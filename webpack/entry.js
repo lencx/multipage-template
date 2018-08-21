@@ -20,6 +20,8 @@ function getEntry(model, type) {
             
             let tmpModelPath = tmpExp[4]
             let pathname = `${modelName}${type === 'pug' ? '/' : '~'}${tmpModelPath}`
+            pathname = /index$/.test(pathname) ? pathname : pathname + '/index'
+            // console.log(pathname)
 
             // home page (`/`)
             if(/^home(~|\/)/.test(pathname)) pathname = pathname.split('home')[1].substr(1)

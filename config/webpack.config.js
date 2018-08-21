@@ -18,7 +18,7 @@ const isLocal = false
 const port = 6001
 const hashLen = 7
 const hasHash = true
-const inlineLimit = 10000
+const inlineLimit = 8192
 const hash = hasHash ? `.[hash:${hashLen}]` : ''
 const userIP = isLocal ? 'localhost' : localIP
 /****************** Config End *********************/

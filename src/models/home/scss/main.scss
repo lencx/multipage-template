@@ -1,9 +1,50 @@
 @import '@pubScss/base.scss';
 
 h1 {
-    color: #2dc;
+    color: #19c;
+    background: rgb(236, 225, 170);
 }
 
 img {
-    max-width: 300px;
+    max-width: 500px;
+}
+
+#slider-cards {
+    .cards-cont {
+        position: relative;
+        width: 540px;
+        height: 300px;
+        lost-utility: clearfix;
+    }
+    .card-item {
+        position: absolute;
+        width: 500px;
+        height: 300px;
+        z-index: 1;
+        border: solid 1px #000;
+        background: #fff;
+        border-radius: 8px;
+        // display: flex;
+        // align-items: center;
+        // justify-content: center;
+        font-size: 38px;
+        text-align: center;
+    }
+    .prev {
+        // background: green;
+        left: 0;
+        height: 260px;
+        top: 20px;
+    }
+    .curr {
+        // background: red;
+        left: 20px;
+        z-index: 3;
+    }
+    .next {
+        // background: yellow;
+        right: 0;
+        height: 260px;
+        top: 20px;
+    }
 }

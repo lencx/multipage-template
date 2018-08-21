@@ -1,7 +1,7 @@
-extends /layout/main.pug
+extends ../../../public/templates/layout/main.pug
 
 block content
-    h1 HOME
+    h1 HOME221
     nav
         li
             a(href='/www') www
@@ -9,4 +9,14 @@ block content
             a(href='/www/about/us.html') www/about/us
 
     main
-        img(src="./../img/wave.png", alt="Wave")
+        img(src="./../img/wave-1.png", alt="Wave")
+        img(src="./../img/11.png", alt="Wave")
+
+    #slider-cards
+        .cards-cont
+            .prev.card-item
+            .curr.card-item
+            .next.card-item
+        .btns
+            button.prevbtn prev
+            button.nextbtn next

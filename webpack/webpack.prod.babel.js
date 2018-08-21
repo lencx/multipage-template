@@ -1,10 +1,25 @@
 import webpackMerge from 'webpack-merge'
 import webpackConf from './webpack.base.babel'
 import ManifestPlugin from 'webpack-manifest-plugin'
+import CleanWebpackPlugin from 'clean-webpack-plugin'
+
+import { resolve } from './utils'
+
+// console.log(resolve('dist'))
 
 export default webpackMerge(webpackConf, {
     mode: 'production',
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        }
+    },
     plugins: [
+        new CleanWebpackPlugin(['dist'], {
+            root: resolve(''),
+            verbose: true,
+            dry: false
+        }),
         new ManifestPlugin({
             serialize: manifest => {
                 let o = {

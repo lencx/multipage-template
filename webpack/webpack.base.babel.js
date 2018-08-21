@@ -1,7 +1,8 @@
+// import webpack from 'webpack'
 import MiniCssExtractPlugin, { loader as _loader } from 'mini-css-extract-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 
-import { resolve, isDEV } from './utils'
+import { resolve, devMode } from './utils'
 import { entryJS, entryPUG } from './entry'
 import { alias, hash, inlineLimit } from './../config/webpack.config'
 
@@ -17,18 +18,20 @@ const webpackConf = {
         alias,
     },
     module: {
-        rules: []
+        rules: [],
     },
     plugins: [
+        // new webpack.optimize.ModuleConcatenationPlugin(),
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
-            filename: `css/[name]${hash}.css`,
-            chunkFilename: '[id].css',
-        })
+            filename: devMode ? 'css/[name].css' : `css/[name]${hash}.css`,
+            chunkFilename: devMode ? 'css/[id].css' : `css/[id]${hash}.css`,
+        }),
     ],
 }
 
+// happypack
 webpackConf.module.rules.push({
     test: /\.js$/,
     use: [
@@ -43,6 +46,7 @@ webpackConf.module.rules.push({
 }, {
     test: /\.pug$/,
     use: [
+        // 'raw-loader',
         'html-loader',
         {
             loader: 'pug-html-loader',
@@ -55,28 +59,28 @@ webpackConf.module.rules.push({
 }, {
     test: /\.(sa|sc|c)ss$/,
     use: [
-        // isDEV ? 'style-loader' : _loader,
-        _loader,
+        devMode ? 'style-loader' : _loader,
         'css-loader',
         'postcss-loader',
-        'sass-loader'
+        'sass-loader',
     ]
 }, {
-    test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+    test: /\.(png|jpe?g|gif|svg)(\?.*)?$/i,
     use: [{
         loader: 'url-loader',
         options: {
             limit: inlineLimit,
-            name: `img/[name]${hash}.[ext]`
+            name: `images/[name]${hash}.[ext]`,
         }
     }]
 }, {
     test: /\.(mp4|webm|ogg|mp3|wav|flac|acc)(\?.*)?$/,
     use: [{
-        loader: 'url-loader',
+        loader: 'file-loader',
         options: {
             limit: inlineLimit,
-            name: `media/[name]${hash}.[ext]`
+            name: `[name]${hash}.[ext]`,
+            outputPath: 'media/',
         }
     }]
 }, {
@@ -85,7 +89,7 @@ webpackConf.module.rules.push({
         loader: 'url-loader',
         options: {
             limit: inlineLimit,
-            name: `fonts/[name]${hash}.[ext]`
+            name: `fonts/[name]${hash}.[ext]`,
         }
     }]
 })
@@ -97,12 +101,12 @@ for(let page in entryPUG) {
         template: entryPUG[page],
         inject: 'head',
         // hash: false,
-        chunks: [page.replace('/', '~'), 'common', 'vendor'],
+        chunks: [page.replace('/', '~'), 'common'],
         minify: {
             removeComments: true,
             collapseWhitespace: true
         },
-        chunksSortMode: 'dependency'
+        chunksSortMode: 'dependency',
     }
     // console.log(conf)
     webpackConf.plugins.push(new HtmlWebpackPlugin(conf))
