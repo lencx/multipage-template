@@ -1,22 +1,28 @@
 extends ../../../public/templates/layout/main.pug
 
 block content
-    h1 HOME221
+    h1 HOME
+
+    h2 {{message}}
+    ul
+        li(v-for='(item, i) in list') 
+            b {{item.title}} =>
+            span {{item.desc}}
     nav
         li
             a(href='/www') www
         li
-            a(href='/www/about/us.html') www/about/us
+            a(href='/www/about/us') www/about/us
 
     main
         img(src="./../img/wave-1.png", alt="Wave")
         img(src="./../img/11.png", alt="Wave")
 
-    #slider-cards
-        .cards-cont
-            .prev.card-item
-            .curr.card-item
-            .next.card-item
-        .btns
-            button.prevbtn prev
-            button.nextbtn next
+    //- #slider-cards
+    //-     .cards-cont
+    //-         .prev.card-item
+    //-         .curr.card-item
+    //-         .next.card-item
+    //-     .btns
+    //-         button.prevbtn prev
+    //-         button.nextbtn next

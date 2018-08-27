@@ -10,13 +10,14 @@ import { resolve } from './utils'
 export default webpackMerge(webpackConf, {
     mode: 'production',
     optimization: {
+        runtimeChunk: false,
         splitChunks: {
             chunks: 'all',
         }
     },
     plugins: [
         new CleanWebpackPlugin(['dist'], {
-            root: resolve(''),
+            root: resolve(),
             verbose: true,
             dry: false
         }),

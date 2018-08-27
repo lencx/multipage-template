@@ -1,1 +1,1 @@
-alert(11)
+console.log('about-us')

@@ -15,7 +15,7 @@ addModel(model, 'h5')
 
 
 const isLocal = false
-const port = 6001
+const port = 6088
 const hashLen = 7
 const hasHash = true
 const inlineLimit = 8192

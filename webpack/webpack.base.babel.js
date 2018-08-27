@@ -1,4 +1,5 @@
 // import webpack from 'webpack'
+import webpack from 'webpack'
 import MiniCssExtractPlugin, { loader as _loader } from 'mini-css-extract-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 
@@ -6,11 +7,15 @@ import { resolve, devMode } from './utils'
 import { entryJS, entryPUG } from './entry'
 import { alias, hash, inlineLimit } from './../config/webpack.config'
 
+const assetsItems = ['js', 'css', 'images']
+const assets = {}
+assetsItems.some((item, i) => {assets[i] = `assets/${item}`})
+
 const webpackConf = {
     entry: entryJS,
     output: {
         path: resolve('dist'),
-        filename: `js/[name]${hash}.js`,
+        filename: `${assets[0]}/[name]${hash}.js`,
         publicPath: '/'
     },
     resolve: {
@@ -25,8 +30,13 @@ const webpackConf = {
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
-            filename: devMode ? 'css/[name].css' : `css/[name]${hash}.css`,
-            chunkFilename: devMode ? 'css/[id].css' : `css/[id]${hash}.css`,
+            filename: devMode ? 'css/[name].css' : `${assets[1]}/[name]${hash}.css`,
+            chunkFilename: devMode ? 'css/[id].css' : `${assets[1]}/[id]${hash}.css`,
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+            }
         }),
     ],
 }
@@ -46,8 +56,8 @@ webpackConf.module.rules.push({
 }, {
     test: /\.pug$/,
     use: [
-        // 'raw-loader',
         'html-loader',
+        // 'raw-loader',
         {
             loader: 'pug-html-loader',
             options: {
@@ -60,7 +70,7 @@ webpackConf.module.rules.push({
     test: /\.(sa|sc|c)ss$/,
     use: [
         devMode ? 'style-loader' : _loader,
-        'css-loader',
+        'css-loader?sourceMap',
         'postcss-loader',
         'sass-loader',
     ]
@@ -70,26 +80,7 @@ webpackConf.module.rules.push({
         loader: 'url-loader',
         options: {
             limit: inlineLimit,
-            name: `images/[name]${hash}.[ext]`,
-        }
-    }]
-}, {
-    test: /\.(mp4|webm|ogg|mp3|wav|flac|acc)(\?.*)?$/,
-    use: [{
-        loader: 'file-loader',
-        options: {
-            limit: inlineLimit,
-            name: `[name]${hash}.[ext]`,
-            outputPath: 'media/',
-        }
-    }]
-}, {
-    test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-    use: [{
-        loader: 'url-loader',
-        options: {
-            limit: inlineLimit,
-            name: `fonts/[name]${hash}.[ext]`,
+            name: `${assets[2]}/[name]${hash}.[ext]`,
         }
     }]
 })
@@ -104,7 +95,8 @@ for(let page in entryPUG) {
         chunks: [page.replace('/', '~'), 'common'],
         minify: {
             removeComments: true,
-            collapseWhitespace: true
+            collapseWhitespace: true,
+            removeAttributeQuotes: true,
         },
         chunksSortMode: 'dependency',
     }

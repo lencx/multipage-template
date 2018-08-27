@@ -9,7 +9,7 @@
     "clear": "shx rm -rf dist && shx echo Clear dist file done!",
     "dev2": "cross-env NODE_ENV=develpoment webpack-dev-server -wd --display-used-exports --optimize-minimize --config ./webpack/webpack.dev.babel.js",
     "dev": "cross-env NODE_ENV=develpoment webpack-dev-server -wd --config ./webpack/webpack.dev.babel.js",
-    "build": "cross-env NODE_ENV=production webpack-cli -p --config ./webpack/webpack.prod.babel.js && yarn mv:static",
+    "build": "cross-env NODE_ENV=production webpack-cli --config ./webpack/webpack.prod.babel.js && yarn mv:static",
     "mv:static": "shx cp -R ./static ./dist",
     "cli-h": "webpack-cli --help",
     "dev-h": "webpack-dev-server --help",
@@ -51,6 +51,7 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
+    "jquery": "^3.3.1",
     "vue": "^2.5.17"
   }
 }
