@@ -7,8 +7,7 @@
   "license": "MIT",
   "scripts": {
     "clear": "shx rm -rf dist && shx echo Clear dist file done!",
-    "dev2": "cross-env NODE_ENV=develpoment webpack-dev-server -wd --display-used-exports --optimize-minimize --config ./webpack/webpack.dev.babel.js",
-    "dev": "cross-env NODE_ENV=develpoment webpack-dev-server -wd --config ./webpack/webpack.dev.babel.js",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server -wd --config ./webpack/webpack.dev.babel.js",
     "build": "cross-env NODE_ENV=production webpack-cli --config ./webpack/webpack.prod.babel.js && yarn mv:static",
     "mv:static": "shx cp -R ./static ./dist",
     "cli-h": "webpack-cli --help",
@@ -29,6 +28,7 @@
     "eslint-loader": "^2.0.0",
     "file-loader": "^1.1.11",
     "friendly-errors-webpack-plugin": "^1.7.0",
+    "happypack": "^5.0.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "lost": "^8.3.0",

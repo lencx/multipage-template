@@ -2,6 +2,7 @@
 import webpack from 'webpack'
 import MiniCssExtractPlugin, { loader as _loader } from 'mini-css-extract-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import HappyPack from 'happypack'
 
 import { resolve, devMode } from './utils'
 import { entryJS, entryPUG } from './entry'
@@ -38,6 +39,21 @@ const webpackConf = {
                 NODE_ENV: JSON.stringify(process.env.NODE_ENV)
             }
         }),
+
+        new HappyPack({
+            id: 'js',
+            threads: 4,
+            loaders: ['babel-loader?cacheDirectory=true'],
+        }),
+        new HappyPack({
+            id: 'scss',
+            threads: 4,
+            loaders: [
+                'css-loader?sourceMap',
+                'postcss-loader',
+                'sass-loader',
+            ],
+        }),
     ],
 }
 
@@ -45,10 +61,7 @@ const webpackConf = {
 webpackConf.module.rules.push({
     test: /\.js$/,
     use: [
-        {
-            loader: 'babel-loader',
-            options: {cacheDirectory: true}
-        },
+        'happypack/loader?id=js',
         'eslint-loader'
     ],
     exclude: /node_modules/,
@@ -70,9 +83,7 @@ webpackConf.module.rules.push({
     test: /\.(sa|sc|c)ss$/,
     use: [
         devMode ? 'style-loader' : _loader,
-        'css-loader?sourceMap',
-        'postcss-loader',
-        'sass-loader',
+        'happypack/loader?id=scss',
     ]
 }, {
     test: /\.(png|jpe?g|gif|svg)(\?.*)?$/i,

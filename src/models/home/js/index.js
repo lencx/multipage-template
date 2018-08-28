@@ -1,5 +1,5 @@
 // pug(HRM)
-if(process.env.NODE_ENV === 'develpoment') require('./../view/index.pug')
+if(process.env.NODE_ENV === 'development') require('./../view/index.pug')
 
 import './../scss/main.scss'
 
