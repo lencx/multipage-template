@@ -14,7 +14,13 @@ new Vue({
             {title: 'gfhfdsd', desc: '09-diasd'},
             {title: 'lklaskd', desc: '2342345'},
             {title: 'klkelsdf', desc: 'i2934324'},
-        ]
+        ],
+        opts: ['Yes', 'No', 'Maybe']
+    },
+    methods: {
+        showAdvice: function (advice) {
+            alert(advice)
+        }
     }
 })
 })

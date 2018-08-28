@@ -6,8 +6,8 @@ block content
     h2 {{message}}
     ul
         li(v-for='(item, i) in list') 
-            b {{item.title}} =>
-            span {{item.desc}}
+            b(v-text='item.title')
+            span(v-text='item.desc')
     nav
         li
             a(href='/www') www
@@ -17,6 +17,8 @@ block content
     main
         img(src="./../img/wave-1.png", alt="Wave")
         img(src="./../img/11.png", alt="Wave")
+
+    magic-eight-ball(:opts="opts" v-on:give-advice="showAdvice")
 
     //- #slider-cards
     //-     .cards-cont

@@ -3,9 +3,7 @@ import webpackConf from './webpack.base.babel'
 import ManifestPlugin from 'webpack-manifest-plugin'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 
-import { resolve } from './utils'
-
-// console.log(resolve('dist'))
+import { resolve, objAssign, objLen } from './utils'
 
 export default webpackMerge(webpackConf, {
     mode: 'production',
@@ -13,7 +11,8 @@ export default webpackMerge(webpackConf, {
         runtimeChunk: false,
         splitChunks: {
             chunks: 'all',
-        }
+        },
+        minimize: true
     },
     plugins: [
         new CleanWebpackPlugin(['dist'], {
@@ -23,22 +22,19 @@ export default webpackMerge(webpackConf, {
         }),
         new ManifestPlugin({
             serialize: manifest => {
-                let o = {
-                    html: [],
-                    css: [],
-                    js: [],
-                    images: [],
-                }
-                const el = (a, b) => o[a].push(`[${b}] => ${manifest[b]}`)
+                let o = {html: []}
+                
                 Object.keys(manifest).forEach(i => {
-                    if(/^img\//.test(i)) el('images', i)
-                    if(/.js$/.test(i)) el('js', i)
-                    if(/.css$/.test(i)) el('css', i)
+                    if(/\/images\//.test(i)) objAssign(o, 'images', i, manifest[i])
+                    if(/.js$/.test(i)) objAssign(o, 'js', i, manifest[i])
+                    if(/.css$/.test(i)) objAssign(o, 'css', i, manifest[i])
                     if(/.html$/.test(i)) o['html'].push(`${manifest[i]}`)
                 })
                 let _o = Object.assign({
                     htmlTotal: o.html.length,
-                    imagesTotal: o.images.length,
+                    cssTotal: objLen(o.css),
+                    jsTotal: objLen(o.js),
+                    imagesTotal: objLen(o.images),
                 }, o)
                 // return JSON.stringify(manifest, null, 2)
                 return JSON.stringify(_o, null, 2)

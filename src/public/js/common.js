@@ -1,2 +1,3 @@
 import API from './../api'
-console.log('common-js')
+import '@pubcp/ball'
+console.log('common-js:', API)

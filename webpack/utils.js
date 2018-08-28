@@ -15,8 +15,29 @@ const addModel = (obj, modelName) => {
     })
 }
 
+/**
+ * object assign
+ * @param object o - target object
+ * @param string key - target object key
+ * @param string i - sources object key 
+ * @param string val - sources object value
+ */
+const objAssign = (o, key, i, val) => {
+    if(o[key] === undefined) o[key] = {}
+    Object.assign(o[key], {[i]: val})
+}
+
+/**
+ * Object length
+ * @param string key
+ * @return number
+ */
+const objLen = obj => Object.keys(obj).length
+
 export {
     resolve,
     devMode,
     addModel,
+    objAssign,
+    objLen,
 }

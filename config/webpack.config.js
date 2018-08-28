@@ -42,6 +42,7 @@ const alias = {
     '@pub': resolve('src/public'),
     '@pubJS': resolve('src/public/js'),
     '@pubUtils': resolve('src/public/utils'),
+    '@pubcp': resolve('src/public/components'),
     '@pubScss': resolve('src/public/scss'),
     '@www': resolve('src/models/www'),
     '@app': resolve('src/models/app'),
