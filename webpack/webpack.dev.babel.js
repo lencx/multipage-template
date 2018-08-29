@@ -3,7 +3,7 @@ import webpackMerge from 'webpack-merge'
 import FriendlyErrorPlugin from 'friendly-errors-webpack-plugin'
 
 import webpackConf from './webpack.base.babel'
-import { proxy, hostPort } from './../config/webpack.config'
+import { proxyTable, hostPort } from './../config/webpack.config'
 
 export default webpackMerge(webpackConf, {
     mode: 'development',
@@ -22,6 +22,6 @@ export default webpackMerge(webpackConf, {
         inline: true,
         stats: 'errors-only',
         quiet: true,
-        proxy,
+        proxy: proxyTable,
     }),
 })

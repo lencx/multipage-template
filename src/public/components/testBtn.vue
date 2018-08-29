@@ -1,5 +1,6 @@
 <template lang='pug'>
-    button.test-btn(@click='say()') {{txt}}
+    .aa
+        button.test-btn(@click='say()') {{txt}}
 </template>
 
 <style lang="scss" scoped>
@@ -15,13 +16,13 @@
 export default {
     data() {
         return {
-            txt: 'Test Button'
+            txt: 'Test Button',
         }
     },
     methods: {
         say() {
             alert('hello')
-        }
+        },
     }
 }
 </script>

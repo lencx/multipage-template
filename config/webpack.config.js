@@ -31,11 +31,12 @@ model = {
     },
 }
 
-const proxy = {
-    '/api': {
-        target: 'http://localhost:3000',
-        pathRewrite: {'^/api' : ''}
-    }
+const proxyTable = {
+    '/api/*': {
+        target: 'http://xxx.xxx.xxx.xxx:8080',
+        secure: false,
+        pathRewrite: {'^/api': '/api'}
+    },
 }
 
 const alias = {
@@ -56,7 +57,7 @@ const hostPort = {
 
 export {
     model,
-    proxy,
+    proxyTable,
     alias,
     hash,
     inlineLimit,
