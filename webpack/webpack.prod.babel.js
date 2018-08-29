@@ -12,7 +12,7 @@ export default webpackMerge(webpackConf, {
         splitChunks: {
             chunks: 'all',
         },
-        minimize: true
+        // minimize: true
     },
     plugins: [
         new CleanWebpackPlugin(['dist'], {

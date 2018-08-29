@@ -11,6 +11,6 @@ new Vue({
         showAdvice: function (advice) {
             alert(advice)
         }
-    }
+    },
 })
 })

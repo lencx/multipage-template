@@ -4,10 +4,36 @@
 [project]
    |- [.bin]
    |- [config]
+   |     |- userInfo.json
+   |     |- webpack.config.js
+   |     `- ...
    |- [src]
    |   |- [models]
+   |   |     |- [mode_name] # www | home | app | ...
+   |   |     `- ...
    |   `- [public]
+   |         |- [api]
+   |         |    |- dev.api.js
+   |         |    |- prod.api.js
+   |         |    `- index.js
+   |         |- [components]
+   |         |- [js]
+   |         |- [scss]
+   |         |- [templates]
+   |         |      |- [layout]
+   |         |      |- [widget]
+   |         |      `- ...
+   |         |- [utils]
+   |         `- ...
    |- [static]
+   |   |- [plugin]
+   |   |- [lib]
+   |   |     |- vue@2.5.17.min.js
+   |   |     |- jquery@3.3.1.min.js
+   |   |     `- ...
+   |   |- [img]
+   |   |- [media]
+   |   `- ...
    |- [webpack]
    |- package.json
    `- ...
@@ -45,4 +71,40 @@ const enableModel = 'all'
 addModel(model, 'home')
 addModel(model, 'www')
 addModel(model, 'h5')
+```
+
+## Vue use
+
+### Component
+
+* Global Registration
+
+> path: `/src/public/components`\
+> [alias: `@pubcp`](/config/webpack.config.js)
+
+```js
+// src/public/js/common.js
+Vue.component('my-component-name', {
+  // ... options ...
+})
+
+// or
+import testBtn from '@pubcp/testBtn.vue'
+Vue.component('test-btn', testBtn)
+```
+
+* Local Registration
+
+> path: `/src/models/mode_name/components`\
+> alias: ...
+
+```js
+// src/models/mode_name/js/page_name.js
+import localBtn from './your_components_path/localBtn.vue'
+new Vue({
+    el: '#app',
+    components: {
+        localBtn
+    }
+})
 ```

@@ -3,6 +3,7 @@ import webpack from 'webpack'
 import MiniCssExtractPlugin, { loader as _loader } from 'mini-css-extract-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import HappyPack from 'happypack'
+import { VueLoaderPlugin } from 'vue-loader'
 
 import { resolve, devMode } from './utils'
 import { entryJS, entryPUG } from './entry'
@@ -20,7 +21,7 @@ const webpackConf = {
         publicPath: '/'
     },
     resolve: {
-        extensions: ['.js', '.scss', '.json'],
+        extensions: ['.js', '.scss', '.json', '.vue'],
         alias,
     },
     module: {
@@ -39,6 +40,7 @@ const webpackConf = {
                 NODE_ENV: JSON.stringify(process.env.NODE_ENV)
             }
         }),
+        new VueLoaderPlugin(),
 
         new HappyPack({
             id: 'js',
@@ -59,6 +61,9 @@ const webpackConf = {
 
 // happypack
 webpackConf.module.rules.push({
+    test: /\.vue$/,
+    use: 'vue-loader'
+}, {
     test: /\.js$/,
     use: [
         'happypack/loader?id=js',
@@ -67,16 +72,26 @@ webpackConf.module.rules.push({
     exclude: /node_modules/,
     include: [resolve('src')]
 }, {
+    // https://vue-loader.vuejs.org/guide/pre-processors.html#pug
     test: /\.pug$/,
-    use: [
-        'html-loader',
-        // 'raw-loader',
+    oneOf: [
+        // this applies to `<template lang="pug">` in Vue components
         {
-            loader: 'pug-html-loader',
-            options: {
-                doctype: 'html',
-                basedir: resolve('src/public/templates'),
-            }
+          resourceQuery: /^\?vue/,
+          use: 'pug-plain-loader',
+        },
+        // this applies to pug imports inside JavaScript
+        {
+            use: [
+                'html-loader',
+                {
+                    loader: 'pug-plain-loader',
+                    options: {
+                        doctype: 'html',
+                        basedir: resolve('src/public/templates'),
+                    }
+                }
+            ]
         }
     ]
 }, {
