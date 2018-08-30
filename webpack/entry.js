@@ -1,17 +1,20 @@
 import glob from 'glob'
 import { model as _model } from './../config/webpack.config'
 
+let rule_1 = /(src\/)(.*)\/(view|js)\/(.*)\./
+let rule_2 = /(src\/public\/js\/)(.*)(.js)/
+
 function getEntry(model, type) {
     let entries = {}
     // console.log(`===========${type}==========`)
     glob.sync(_model[model][type]).forEach(entry => {
         // console.log(entry)
-        let tmpExp = entry.match(/(src\/)(.*)\/(view|js)\/(.*)\./)
+        let tmpExp = entry.match(rule_1)
         let modelName = tmpExp[2]
 
         if (modelName == 'public') {
             // console.log(entry)
-            modelName = entry.match(/(src\/public\/js\/)(.*)(.js)/)[2]
+            modelName = entry.match(rule_2)[2]
             entries[modelName] = entry
         } else {
             // models
@@ -29,6 +32,12 @@ function getEntry(model, type) {
             // console.log(`model: ${modelName} --- path: ${tmpModelPath}`)
         }
     })
+    if(model !== 'all' && type === 'js') {
+        glob.sync(_model.pubModeJS).forEach(entry => {
+            let _tmp = entry.match(rule_2)[2]
+            entries[_tmp] = entry
+        })
+    }
     // console.log(entries)
     return entries
 }

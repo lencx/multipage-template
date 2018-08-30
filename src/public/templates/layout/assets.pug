@@ -1,3 +1,14 @@
 //- script(src='/static/lib/jquery@3.3.1.min.js')
+//- production | development
+if process.env.NODE_ENV === 'production'
+    script.
+        'use strict';
+        var getJSON=function(a,b,c){var d=new XMLHttpRequest;d.onreadystatechange=function(){d.readyState===XMLHttpRequest.DONE&&(200===d.status?b&&b(JSON.parse(d.responseText)):c&&c(d))},d.open('GET',a,!0),d.send()};var createEl=function(a,b){var c=document.createElement(a);Object.keys(b).forEach(function(d){c.setAttribute(d,b[d])}),document.head.appendChild(c)};console.log('%c For more information: https://github.com/lencx/multipage-template','color:#369;font-size:10px;');
+
+        //- Insert resource
+        getJSON('/manifest.json', function(data){
+            createEl('link',{rel:'stylesheet',type:'text/css',href:data.css['common.css']}),createEl('script',{src:data.js['common.js']});
+            //- more...
+        })
 script(src='/static/lib/vue@2.5.17.min.js')
 script(src='/static/lib/axios.min.js')

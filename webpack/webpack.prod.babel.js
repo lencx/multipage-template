@@ -5,6 +5,10 @@ import CleanWebpackPlugin from 'clean-webpack-plugin'
 
 import { resolve, objAssign, objLen } from './utils'
 
+const objLen2 = o => {
+    if(o) return objLen(o)
+}
+
 export default webpackMerge(webpackConf, {
     mode: 'production',
     optimization: {
@@ -32,9 +36,9 @@ export default webpackMerge(webpackConf, {
                 })
                 let _o = Object.assign({
                     htmlTotal: o.html.length,
-                    cssTotal: objLen(o.css),
-                    jsTotal: objLen(o.js),
-                    imagesTotal: objLen(o.images),
+                    cssTotal: objLen2(o.css),
+                    jsTotal: objLen2(o.js),
+                    imagesTotal: objLen2(o.images),
                 }, o)
                 // return JSON.stringify(manifest, null, 2)
                 return JSON.stringify(_o, null, 2)

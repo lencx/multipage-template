@@ -7,7 +7,7 @@ import { VueLoaderPlugin } from 'vue-loader'
 
 import { resolve, devMode } from './utils'
 import { entryJS, entryPUG } from './entry'
-import { alias, hash, inlineLimit } from './../config/webpack.config'
+import { alias, hash, inlineLimit, commonJS } from './../config/webpack.config'
 
 const assetsItems = ['js', 'css', 'images']
 const assets = {}
@@ -118,7 +118,7 @@ for(let page in entryPUG) {
         template: entryPUG[page],
         inject: 'head',
         // hash: false,
-        chunks: [page.replace('/', '~'), 'common'],
+        chunks: [page.replace('/', '~')].concat(devMode ? commonJS : []),
         minify: {
             removeComments: true,
             collapseWhitespace: true,

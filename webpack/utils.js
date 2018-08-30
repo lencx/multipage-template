@@ -9,9 +9,10 @@ const devMode = process.env.NODE_ENV === 'production'
 const addModel = (obj, modelName) => {
     return Object.assign(obj, {
         [modelName]: {
-            js: resolve(`src/${modelName}/js/**/*.js`),
-            pug: resolve(`src/${modelName}/view/**/*.pug`),
-        }
+            js: resolve(`src/**/${modelName}/js/**/*.js`),
+            pug: resolve(`src/**/${modelName}/view/**/*.pug`),
+        },
+        pubModeJS: resolve('src/public/js/**/*.js')
     })
 }
 

@@ -1,5 +1,6 @@
 import { resolve, addModel } from './../webpack/utils'
-import { localIP, userInfo } from './../webpack/local'
+import localIP from 'l3x-ip'
+import userInfo from '../webpack/info'
 
 // Output developer's system information(`/config/userInfo.json`)
 userInfo()
@@ -13,24 +14,32 @@ addModel(model, 'home')
 addModel(model, 'www')
 addModel(model, 'h5')
 
-
+// true: localhost | false: IP address
 const isLocal = false
+// service port
 const port = 6088
+// hash length
 const hashLen = 7
+// whether hash
 const hasHash = true
+// specifying the maximum size of a file in bytes.
 const inlineLimit = 8192
+// resources that need to be dynamically inserted.
+const commonJS = ['common']
 const hash = hasHash ? `.[hash:${hashLen}]` : ''
 const userIP = isLocal ? 'localhost' : localIP
 /****************** Config End *********************/
 
-model = {
+Object.assign(model, {
     enableModel,
     all: {
         js: resolve('src/**/js/**/*.js'),
         pug: resolve('src/**/view/**/*.pug'),
     },
-}
+})
 
+
+/****************** proxy *********************/
 const proxyTable = {
     '/api/*': {
         target: 'http://xxx.xxx.xxx.xxx:8080',
@@ -39,6 +48,7 @@ const proxyTable = {
     },
 }
 
+/****************** alias *********************/
 const alias = {
     '@pub': resolve('src/public'),
     '@pubJS': resolve('src/public/js'),
@@ -50,6 +60,7 @@ const alias = {
     '@h5': resolve('src/models/h5'),
 }
 
+/****************** address *********************/
 const hostPort = {
     host: userIP,
     port,
@@ -62,4 +73,5 @@ export {
     hash,
     inlineLimit,
     hostPort,
+    commonJS,
 }
