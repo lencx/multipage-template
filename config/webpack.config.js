@@ -1,9 +1,9 @@
 import { resolve, addModel } from './../webpack/utils'
 import localIP from 'l3x-ip'
-import userInfo from '../webpack/info'
+import userInfo from 'l3x-devinfo'
 
-// Output developer's system information(`/config/userInfo.json`)
-userInfo()
+// Output developer's system information(`/config/dev-info.json`)
+userInfo('config/dev-info.json')
 let model = {}
 
 /****************** Config Start *********************/
