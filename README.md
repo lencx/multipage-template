@@ -54,6 +54,9 @@ yarn build
 yarn cli-h
 # webpack-dev-server
 yarn dev-h
+
+# default: timestamp
+yarn zip <dist_pack_version>
 ```
 
 ## Model

@@ -6,10 +6,9 @@
   "author": "Len <cxin1314@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "clear": "shx rm -rf dist && shx echo Clear dist file done!",
+    "clear": "shx rm -rf pack && shx echo Clear pack file done!",
     "dev": "cross-env NODE_ENV=development webpack-dev-server -wd --config ./webpack/webpack.dev.babel.js",
-    "build": "cross-env NODE_ENV=production webpack-cli --config ./webpack/webpack.prod.babel.js && yarn mv:static",
-    "mv:static": "shx cp -R ./static ./dist",
+    "build": "cross-env NODE_ENV=production webpack-cli --config ./webpack/webpack.prod.babel.js",
     "cli-h": "webpack-cli --help",
     "dev-h": "webpack-dev-server --help",
     "zip": ".bin/zip"
@@ -22,6 +21,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-runtime": "^6.26.0",
     "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.5.2",
     "cross-env": "^5.2.0",
     "css-loader": "^0.28.11",
     "eslint": "^5.0.1",
@@ -56,7 +56,6 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
-    "jquery": "^3.3.1",
     "vue": "^2.5.17"
   }
 }

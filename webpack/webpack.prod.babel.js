@@ -2,6 +2,7 @@ import webpackMerge from 'webpack-merge'
 import webpackConf from './webpack.base.babel'
 import ManifestPlugin from 'webpack-manifest-plugin'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
 
 import { resolve, objAssign, objLen } from './utils'
 
@@ -24,6 +25,12 @@ export default webpackMerge(webpackConf, {
             verbose: true,
             dry: false
         }),
+        new CopyWebpackPlugin([
+            {
+                from: resolve('static/**/*'),
+                to: resolve('dist'),
+            }
+        ]),
         new ManifestPlugin({
             serialize: manifest => {
                 let o = {html: []}
