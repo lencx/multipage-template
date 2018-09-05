@@ -6,11 +6,11 @@
   "author": "Len <cxin1314@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "clear": "shx rm -rf pack && shx echo Clear pack file done!",
     "dev": "cross-env NODE_ENV=development webpack-dev-server -wd --config ./webpack/webpack.dev.babel.js",
     "build": "cross-env NODE_ENV=production webpack-cli --config ./webpack/webpack.prod.babel.js",
-    "cli-h": "webpack-cli --help",
-    "dev-h": "webpack-dev-server --help",
+    "cli:help": "webpack-cli --help",
+    "dev:help": "webpack-dev-server --help",
+    "clear": "shx rm -rf",
     "zip": ".bin/zip"
   },
   "devDependencies": {

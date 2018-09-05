@@ -51,12 +51,18 @@ yarn build
 
 ### help ###
 # webpack-cli
-yarn cli-h
+yarn cli:help
 # webpack-dev-server
-yarn dev-h
+yarn dev:help
 
 # default: timestamp
 yarn zip <dist_pack_version>
+
+# clear directory
+yarn clear <dirname> # dirname: required
+
+# `make` command instructions
+make
 ```
 
 ## Model
@@ -111,3 +117,7 @@ new Vue({
     }
 })
 ```
+
+## TODO
+
+* [ ] Generate new module
