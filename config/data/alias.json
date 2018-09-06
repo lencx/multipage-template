@@ -1,0 +1,11 @@
+{
+    "@pub": "src/public",
+    "@pubJS": "src/public/js",
+    "@pubUtils": "src/public/utils",
+    "@pubcp": "src/public/components",
+    "@pubScss": "src/public/scss",
+    "@home": "src/models/home",
+    "@www": "src/models/www",
+    "@app": "src/models/app",
+    "@h5": "src/models/h5"
+}

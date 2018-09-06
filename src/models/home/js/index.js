@@ -1,7 +1,7 @@
 // pug(HRM)
 if(process.env.NODE_ENV === 'development') require('./../view/index.pug')
 
-import './../scss/main.scss'
+import '../scss/main.scss'
 
 window.addEventListener('load', () => {
 new Vue({

@@ -1,5 +1,6 @@
 import glob from 'glob'
 import { model as _model } from './../config/webpack.config'
+import { resolve } from './../webpack/utils'
 
 let rule_1 = /(src\/)(.*)\/(view|js)\/(.*)\./
 let rule_2 = /(src\/public\/js\/)(.*)(.js)/
@@ -7,7 +8,7 @@ let rule_2 = /(src\/public\/js\/)(.*)(.js)/
 function getEntry(model, type) {
     let entries = {}
     // console.log(`===========${type}==========`)
-    glob.sync(_model[model][type]).forEach(entry => {
+    glob.sync(resolve(_model[model][type])).forEach(entry => {
         // console.log(entry)
         let tmpExp = entry.match(rule_1)
         let modelName = tmpExp[2]

@@ -11,7 +11,8 @@
     "cli:help": "webpack-cli --help",
     "dev:help": "webpack-dev-server --help",
     "clear": "shx rm -rf",
-    "zip": ".bin/zip"
+    "zip": ".bin/zip",
+    "new": "node ./.bin/new"
   },
   "devDependencies": {
     "archiver": "^2.1.1",
@@ -29,6 +30,7 @@
     "eslint-plugin-vue": "^4.7.1",
     "file-loader": "^1.1.11",
     "friendly-errors-webpack-plugin": "^1.7.0",
+    "fs-extra": "^7.0.0",
     "happypack": "^5.0.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",

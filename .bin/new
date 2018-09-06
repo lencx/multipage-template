@@ -1,0 +1,46 @@
+// #!/usr/bin/env node
+
+//! *********************************
+//! *     Module creation rule      *
+//! *********************************
+// make new mode@aa                 *
+// src/models/aa/view/index.pug     *
+// src/models/aa/js/index.js        *
+// src/models/aa/scss/index.scss    *
+// src/models/aa/img                *
+//! *********************************
+// make new mode@aa bb              *
+// src/models/aa/view/bb/index.pug  *
+// src/models/aa/js/bb/index.js     *
+// src/models/aa/scss/bb/index.scss *
+//! *********************************
+// make new mode@aa bb/cc           *
+// src/models/aa/view/bb/cc.pug     *
+// src/models/aa/js/bb/cc.js        *
+// src/models/aa/scss/bb/cc.scss    *
+//! *********************************          
+
+const path = require('path')
+const fs = require('fs-extra')
+const tpl = require('../config/tpl')
+
+// add mode to `/config/data/mode.json` file
+require('../config/mode')
+
+const createFile = require('./create-file')
+// console.log(createFile)
+
+Object.keys(createFile).forEach(item => {
+    // console.log(item)
+    // console.log(createFile[item].replace('#', item))
+
+    let _file = createFile[item].replace('#', item)
+    fs.pathExists(_file)
+        .then(exist => {
+            if(!exist) {
+                fs.outputFile(_file, tpl[item], err => {
+                    // console.log(err)
+                })
+            } else console.log('File already exists!')
+        })
+})

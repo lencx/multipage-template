@@ -1,0 +1,20 @@
+{
+    "enableModel": "all",
+    "pubModeJS": "src/public/js/**/*.js",
+    "all": {
+        "js": "src/**/js/**/*.js",
+        "pug": "src/**/view/**/*.pug"
+    },
+    "h5": {
+        "js": "src/**/h5/js/**/*.js",
+        "pug": "src/**/h5/view/**/*.pug"
+    },
+    "www": {
+        "js": "src/**/www/js/**/*.js",
+        "pug": "src/**/www/view/**/*.pug"
+    },
+    "app": {
+        "js": "src/**/app/js/**/*.js",
+        "pug": "src/**/app/view/**/*.pug"
+    }
+}

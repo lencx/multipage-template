@@ -1,19 +1,14 @@
-import { resolve, addModel } from './../webpack/utils'
+import { resolve } from './../webpack/utils'
 import localIP from 'l3x-ip'
 import userInfo from 'l3x-devinfo'
 
 // Output developer's system information(`/config/dev-info.json`)
-userInfo('config/dev-info.json')
-let model = {}
+userInfo('config/data/dev-info.json')
+
+import model from './data/mode.json'
+import aliasData from './data/alias.json'
 
 /****************** Config Start *********************/
-// all | www | h5 | ...
-const enableModel = 'all'
-// Add Model
-addModel(model, 'home')
-addModel(model, 'www')
-addModel(model, 'h5')
-
 // true: localhost | false: IP address
 const isLocal = false
 // service port
@@ -30,14 +25,6 @@ const hash = hasHash ? `.[hash:${hashLen}]` : ''
 const userIP = isLocal ? 'localhost' : localIP
 /****************** Config End *********************/
 
-Object.assign(model, {
-    enableModel,
-    all: {
-        js: resolve('src/**/js/**/*.js'),
-        pug: resolve('src/**/view/**/*.pug'),
-    },
-})
-
 
 /****************** proxy *********************/
 const proxyTable = {
@@ -49,16 +36,12 @@ const proxyTable = {
 }
 
 /****************** alias *********************/
-const alias = {
-    '@pub': resolve('src/public'),
-    '@pubJS': resolve('src/public/js'),
-    '@pubUtils': resolve('src/public/utils'),
-    '@pubcp': resolve('src/public/components'),
-    '@pubScss': resolve('src/public/scss'),
-    '@www': resolve('src/models/www'),
-    '@app': resolve('src/models/app'),
-    '@h5': resolve('src/models/h5'),
-}
+let alias = {}
+Object.keys(aliasData).forEach(item => {
+    Object.assign(alias, {
+        [item]: resolve(aliasData[item])
+    })
+})
 
 /****************** address *********************/
 const hostPort = {

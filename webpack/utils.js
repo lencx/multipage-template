@@ -6,16 +6,6 @@ const resolve = (...dir) => path.resolve(__dirname, '..', ...dir)
 const devMode = process.env.NODE_ENV === 'production'
     ? false : true
 
-const addModel = (obj, modelName) => {
-    return Object.assign(obj, {
-        [modelName]: {
-            js: resolve(`src/**/${modelName}/js/**/*.js`),
-            pug: resolve(`src/**/${modelName}/view/**/*.pug`),
-        },
-        pubModeJS: resolve('src/public/js/**/*.js')
-    })
-}
-
 /**
  * object assign
  * @param object o - target object
@@ -38,7 +28,6 @@ const objLen = obj => Object.keys(obj).length
 export {
     resolve,
     devMode,
-    addModel,
     objAssign,
     objLen,
 }

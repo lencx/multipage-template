@@ -61,6 +61,9 @@ yarn zip <dist_pack_version>
 # clear directory
 yarn clear <dirname> # dirname: required
 
+# create mode or page
+yarn new mode@<mode_name> <page_name> # mode_name: required
+
 # `make` command instructions
 make
 ```
@@ -71,16 +74,6 @@ make
 * app
 * h5
 * ...
-
-```js
-// config/webpack.config.js
-// all | www | h5 | ...
-const enableModel = 'all'
-// Add Model
-addModel(model, 'home')
-addModel(model, 'www')
-addModel(model, 'h5')
-```
 
 ## Vue use
 
