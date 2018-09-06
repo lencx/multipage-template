@@ -35,7 +35,7 @@ let styleTpl = `body {
 let jsTpl = `// pug(HRM)
 if(process.env.NODE_ENV === 'development') require('${_filename}')
 
-import '@${args2[1]}/scss/${level.split('.pug')[0]}.scss'
+import '@${args2[1]}/scss${level.split('.pug')[0]}.scss'
 `
 
 module.exports = {

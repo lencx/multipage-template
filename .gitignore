@@ -6,4 +6,4 @@ node_modules
 *.log
 *.zip
 /test
-/config/dev-info.json
+/config/data/dev-info.json

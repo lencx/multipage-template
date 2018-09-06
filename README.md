@@ -4,7 +4,10 @@
 [project]
    |- [.bin]
    |- [config]
-   |     |- userInfo.json
+   |     |- [data]
+   |     |     |- alias.json # webpack alias
+   |     |     |- mode.json # entry file
+   |     |     `- dev-info.json # developer information
    |     |- webpack.config.js
    |     `- ...
    |- [src]
@@ -82,7 +85,7 @@ make
 * Global Registration
 
 > path: `/src/public/components`\
-> [alias: `@pubcp`](/config/webpack.config.js)
+> [alias: `@pubcp`](/config/data/alias.json)
 
 ```js
 // src/public/js/common.js
@@ -113,4 +116,5 @@ new Vue({
 
 ## TODO
 
-* [ ] Generate new module
+* [x] Generate new module or page
+* [ ] Enable the module through the terminal

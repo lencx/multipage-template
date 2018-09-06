@@ -23,12 +23,13 @@
 const path = require('path')
 const fs = require('fs-extra')
 const tpl = require('../config/tpl')
-
-// add mode to `/config/data/mode.json` file
-require('../config/mode')
+const chalk = require('chalk')
 
 const createFile = require('./create-file')
 // console.log(createFile)
+
+// add mode to `/config/data/mode.json` file
+require('../config/mode')
 
 Object.keys(createFile).forEach(item => {
     // console.log(item)
@@ -37,10 +38,13 @@ Object.keys(createFile).forEach(item => {
     let _file = createFile[item].replace('#', item)
     fs.pathExists(_file)
         .then(exist => {
+            let cut = '/src/models'
+            let _name = cut + _file.split(cut)[1]
             if(!exist) {
                 fs.outputFile(_file, tpl[item], err => {
                     // console.log(err)
                 })
-            } else console.log('File already exists!')
+                console.log(chalk.yellow(_name), chalk.green('File successfully written!'))
+            } else console.log(chalk.yellow(_name), chalk.red('File already exists!'))
         })
 })

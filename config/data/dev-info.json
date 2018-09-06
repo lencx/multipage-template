@@ -3,9 +3,7 @@
     "username": "cx",
     "platform": "macOS",
     "IP Record": [
-      "172.16.0.45",
       "172.16.0.24"
-    ],
-    "Current IP": "172.16.0.24"
+    ]
   }
 ]

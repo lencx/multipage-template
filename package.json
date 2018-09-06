@@ -1,6 +1,6 @@
 {
   "name": "multipage-template",
-  "version": "2.2.2",
+  "version": "2.3.0",
   "description": "Multi-module(webpack@4, pug, scss, postcss, babel)",
   "repository": "git@github.com:lencx/multipage-template.git",
   "author": "Len <cxin1314@gmail.com>",
@@ -21,6 +21,7 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "babel-runtime": "^6.26.0",
+    "chalk": "^2.4.1",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.2",
     "cross-env": "^5.2.0",
