@@ -1,13 +1,13 @@
 const path = require('path')
-const chalk = require('chalk')
+const { red, magenta } = require('chalk')
 
 // get terminal arguments
 let args2 = process.argv[2].split('@') // mode
 let args3 = process.argv[3] // file path
 
 if (!args2[1]) {
-    console.error(chalk.red('no mode@mode_name specified'))
-    console.error(chalk.magenta('make new mode@test | yarn new mode@test'))
+    console.error(red('no mode@mode_name specified'))
+    console.error(magenta('make new mode@test | yarn new mode@test'))
     process.exit(0)
 }
 

@@ -23,7 +23,7 @@
 const path = require('path')
 const fs = require('fs-extra')
 const tpl = require('../config/tpl')
-const chalk = require('chalk')
+const { yellow, red, green } = require('chalk')
 
 const createFile = require('./create-file')
 // console.log(createFile)
@@ -44,7 +44,7 @@ Object.keys(createFile).forEach(item => {
                 fs.outputFile(_file, tpl[item], err => {
                     // console.log(err)
                 })
-                console.log(chalk.yellow(_name), chalk.green('File successfully written!'))
-            } else console.log(chalk.yellow(_name), chalk.red('File already exists!'))
+                console.log(yellow(_name), green('File successfully written!'))
+            } else console.log(yellow(_name), red('File already exists!'))
         })
 })

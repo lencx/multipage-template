@@ -67,6 +67,12 @@ yarn clear <dirname> # dirname: required
 # create mode or page
 yarn new mode@<mode_name> <page_name> # mode_name: required
 
+# model list
+yarn mode
+
+# enable all model
+yarn mode all
+
 # `make` command instructions
 make
 ```
@@ -117,4 +123,4 @@ new Vue({
 ## TODO
 
 * [x] Generate new module or page
-* [ ] Enable the module through the terminal
+* [x] Enable the module through the terminal

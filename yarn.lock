@@ -3730,6 +3730,13 @@ l3x-devinfo@^0.0.2:
     fs-extra "^7.0.0"
     l3x-ip "^0.0.1"
 
+l3x-generate-file@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/l3x-generate-file/-/l3x-generate-file-0.0.2.tgz#8e5f7ae3424832957429ac74fd629399c3736e9e"
+  dependencies:
+    chalk "^2.4.1"
+    fs-extra "^7.0.0"
+
 l3x-ip@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/l3x-ip/-/l3x-ip-0.0.1.tgz#bfdc4f95c19873ba7df5945f91045b68edc188a4"

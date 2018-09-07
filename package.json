@@ -12,7 +12,8 @@
     "dev:help": "webpack-dev-server --help",
     "clear": "shx rm -rf",
     "zip": ".bin/zip",
-    "new": "node ./.bin/new"
+    "new": "node ./.bin/new",
+    "mode": "node ./.bin/mode"
   },
   "devDependencies": {
     "archiver": "^2.1.1",
@@ -36,6 +37,7 @@
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "l3x-devinfo": "^0.0.2",
+    "l3x-generate-file": "^0.0.2",
     "l3x-ip": "^0.0.1",
     "lost": "^8.3.0",
     "mini-css-extract-plugin": "^0.4.0",

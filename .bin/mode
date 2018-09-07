@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+const { red, green, magenta } = require('chalk')
+const fs = require('fs-extra')
+const path = require('path')
+const { genJSON } = require('l3x-generate-file')
+
+// make enable all
+let args2 = process.argv[2]
+
+let models = ['all'].concat(fs.readdirSync(path.resolve(__dirname, '..', 'src/models')))
+console.log(green(`mode: ${models.join(' | ')}`))
+
+if(!args2) {
+    console.log(red('Enable model name is not specified'))
+    console.log(magenta('make mode all | yarn mode all'))
+    process.exit(0)
+}
+
+let file = path.resolve(__dirname, '..', 'config/data/mode.json')
+
+genJSON({
+    data: require(file),
+    key: 'enableModel',
+    val: args2,
+    output: file,
+    cover: true
+})
